@@ -1,3 +1,8 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  label_view_customize: "View customize"
+  label_view_customizes_new: "New view customize"
+  field_path_pattern: "Path pattern"
+  field_customize_type: "Type"
+  field_code: "Code"
+

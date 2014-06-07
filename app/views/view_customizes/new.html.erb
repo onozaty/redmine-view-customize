@@ -1,1 +1,7 @@
-<h2>ViewCustomizesController#new</h2>
+<h2><%=l(:label_view_customizes_new)%></h2>
+<%= labelled_form_for :view_customize, @view_customize,
+        :url => view_customizes_path,
+        :html => {:multipart => true, :id => 'view_customize-form'} do |f| %>
+    <%= render :partial => 'view_customizes/form', :locals => {:form => f} %>
+    <%= f.submit l(:button_create) %>
+<% end %>

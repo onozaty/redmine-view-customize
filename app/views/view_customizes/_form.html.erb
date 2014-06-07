@@ -1,0 +1,10 @@
+<%= error_messages_for 'view_customize' %>
+<div class="box tabular">
+  <p><%= form.text_field :path_pattern,
+         :size => 100, :required => true %></p>
+  <p><%= form.select :customize_type,
+	 options_for_select(@view_customize.customize_types),
+	 :required => true %></p>
+  <p><%= form.text_area :code,
+	 :required => true %></p>
+</div>
