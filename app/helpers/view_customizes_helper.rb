@@ -1,0 +1,2 @@
+module ViewCustomizesHelper
+end
