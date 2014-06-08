@@ -1,3 +1,27 @@
-table.list td.code {
+table.list td.code, table.list td.path {
     text-align: left;
 }
+
+table.view_customize {
+    width: 100%;
+}
+
+table.view_customize th {
+    text-align: right;
+    vertical-align: top;
+    width: 10%;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+table.view_customize td {
+    vertical-align: top;
+}
+
+table.view_customize td pre {
+    margin: 0;
+    padding: 2px 4px;
+    background-color: #FFFFFF;
+    border: 1px solid #E4E4E4;
+}
+

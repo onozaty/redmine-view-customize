@@ -3,7 +3,7 @@
   <p><%= form.text_field :path_pattern,
          :size => 100, :required => true %></p>
   <p><%= form.select :customize_type,
-	 options_for_select(@view_customize.customize_types),
+	 options_for_select(@view_customize.customize_types, :selected => @view_customize.customize_type),
 	 :required => true %></p>
   <p><%= form.text_area :code,
 	 :required => true %></p>

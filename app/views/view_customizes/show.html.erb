@@ -1,1 +1,29 @@
-<h2>ViewCustomizesController#show</h2>
+<%= render :partial => 'view_customizes/header' %>
+
+<div class="contextual">
+<%= link_to(l(:button_edit),
+               {:action => 'edit', :id => @view_customize.id},
+               :class => 'icon icon-edit') %>
+<%= link_to(l(:button_delete),
+               {:action => 'destroy', :id => @view_customize.id},
+               :confirm => l(:text_are_you_sure), :method => :delete,
+               :class => 'icon icon-del') %>
+</div>
+
+<h2><%=h l(:label_view_customize) %> #<%=h @view_customize.id %></h2>
+
+<table class="box view_customize">
+  <tr>
+    <th><%=h l(:field_path_pattern) %>:</th>
+    <td><%=h @view_customize.path_pattern %></td>
+  </tr>
+  <tr>
+    <th><%=h l(:field_customize_type) %>:</th>
+    <td><%=h @view_customize.customize_type_name %></td>
+  </tr>
+  <tr>
+    <th><%=h l(:field_code) %>:</th>
+    <td><%= highlight_by_language(
+	    @view_customize.code, @view_customize.customize_type == 1 ? :js : :css) %></td>
+  </tr>
+</table>

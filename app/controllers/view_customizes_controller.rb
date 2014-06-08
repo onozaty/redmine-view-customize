@@ -2,6 +2,7 @@ class ViewCustomizesController < ApplicationController
   unloadable
 
   before_filter :require_admin
+  before_filter :find_view_customize, :except => [:index, :new, :create]
 
   def index
     @view_customizes = ViewCustomize.find(:all)
@@ -27,4 +28,30 @@ class ViewCustomizesController < ApplicationController
 
   def edit
   end
+
+  def update
+    @view_customize.attributes = params[:view_customize]
+    if @view_customize.save
+      flash[:notice] = l(:notice_successful_update)
+      redirect_to view_customize_path(@view_customize.id)
+    else
+      render :action => 'edit'
+    end
+  rescue ActiveRecord::StaleObjectError
+    flash.now[:error] = l(:notice_locking_conflict)
+    render :action => 'edit'
+  end
+
+  def destroy
+    @view_customize.destroy
+    redirect_to view_customizes_path
+  end
+
+  private
+
+  def find_view_customize
+    @view_customize = ViewCustomize.find(params[:id])
+    render_404 unless @view_customize
+  end
+
 end

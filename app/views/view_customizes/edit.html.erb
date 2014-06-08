@@ -1,1 +1,11 @@
-<h2>ViewCustomizesController#edit</h2>
+<%= render :partial => 'view_customizes/header' %>
+
+<h2><%=h l(:label_view_customizes_edit) %> #<%= @view_customize.id %></h2>
+
+<%= labelled_form_for :view_customize, @view_customize,
+        :url => view_customize_path,
+        :html => {:multipart => true, :id => 'view_customize-form'} do |f| %>
+    <%= render :partial => 'view_customizes/form', :locals => {:form => f} %>
+    <%= f.submit l(:button_save) %>
+    <%= link_to l(:button_cancel), :controller => 'view_customizes', :action => 'show', :id => @view_customize.id %>
+<% end %>

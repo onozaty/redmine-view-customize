@@ -1,11 +1,11 @@
-<%= stylesheet_link_tag "view_customize.css", :plugin => 'view_customize' %>
+<%= render :partial => 'view_customizes/header' %>
 
 <div class="contextual">
   <%= link_to l(:label_view_customizes_new), 
       new_view_customize_path, :class => 'icon icon-add' %>
 </div>
 
-<h2> <%=h l(:label_view_customize) %> </h2>
+<h2><%=h l(:label_view_customize) %></h2>
 
 <% if (@view_customizes.blank?) %>
   <p class="nodata"><%= l(:label_no_data) %></p>
@@ -26,7 +26,7 @@
     <% @view_customizes.each do |view_customize| %>
     <tr class="<%= cycle('odd', 'even') %>">
       <td><%= link_to view_customize.id, view_customize_path(view_customize.id) %></td>
-      <td><%=h view_customize.path_pattern %></td>
+      <td class="path"><%=h view_customize.path_pattern %></td>
       <td><%=h view_customize.customize_type_name %></td>
       <td class="code"><%=h truncate(view_customize.code, :length => 50) %></td>
     </tr>

@@ -2,6 +2,7 @@
 en:
   label_view_customize: "View customize"
   label_view_customizes_new: "New view customize"
+  label_view_customizes_edit: "Edit view customize"
   field_path_pattern: "Path pattern"
   field_customize_type: "Type"
   field_code: "Code"
