@@ -6,7 +6,13 @@ class ViewCustomize < ActiveRecord::Base
 
   validates_presence_of :code
 
-  @@customize_types = {"JavaScript" => 1, "StyleSheet" => 2}
+  TYPE_JAVASCRIPT = 1
+  TYPE_STYLESHEET = 2
+
+  @@customize_types = {
+    "JavaScript" => TYPE_JAVASCRIPT,
+    "StyleSheet" => TYPE_STYLESHEET
+  }
 
   def customize_types
     @@customize_types
@@ -15,4 +21,13 @@ class ViewCustomize < ActiveRecord::Base
   def customize_type_name
     @@customize_types.key(customize_type)
   end
+
+  def is_javascript?
+    customize_type == TYPE_JAVASCRIPT
+  end
+
+  def is_stylesheet?
+    customize_type == TYPE_STYLESHEET
+  end
+  
 end

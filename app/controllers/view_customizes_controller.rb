@@ -5,11 +5,11 @@ class ViewCustomizesController < ApplicationController
   before_filter :find_view_customize, :except => [:index, :new, :create]
 
   def index
-    @view_customizes = ViewCustomize.find(:all)
+    @view_customizes = ViewCustomize.all
   end
 
   def new
-    @view_customize = ViewCustomize.new()
+    @view_customize = ViewCustomize.new
   end
 
   def create

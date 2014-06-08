@@ -28,7 +28,7 @@
       <td><%= link_to view_customize.id, view_customize_path(view_customize.id) %></td>
       <td class="path"><%=h view_customize.path_pattern %></td>
       <td><%=h view_customize.customize_type_name %></td>
-      <td class="code"><%=h truncate(view_customize.code, :length => 50) %></td>
+      <td class="code"><%=h truncate(view_customize.code, :length => 80) %></td>
     </tr>
     <% end %>
   </tbody>
