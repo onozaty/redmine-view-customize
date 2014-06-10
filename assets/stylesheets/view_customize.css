@@ -25,3 +25,7 @@ table.view_customize td pre {
     border: 1px solid #E4E4E4;
 }
 
+textarea#view_customize_code {
+    resize: vertical;
+    width: 95%;
+}
