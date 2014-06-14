@@ -8,7 +8,7 @@ Redmine::Plugin.register :view_customize do
   url 'https://github.com/onozaty/redmine-view-customize'
   author_url 'https://github.com/onozaty'
 
-  menu :top_menu, :view_customizes,
+  menu :admin_menu, :view_customizes,
     { :controller => 'view_customizes', :action => 'index' },
     :caption => :label_view_customize,
     :if => Proc.new { User.current.admin? }
