@@ -6,4 +6,5 @@ en:
   field_path_pattern: "Path pattern"
   field_customize_type: "Type"
   field_code: "Code"
-
+  text_path_pattern_info: "Path pattern is specified with a regular expression. (ex. /issues/[0-9]+)"
+  text_path_pattern_match_info: "If there is a match with the path of the page, the following code is executed."
