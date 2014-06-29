@@ -1,6 +1,8 @@
 class ViewCustomizesController < ApplicationController
   unloadable
 
+  layout 'admin'
+
   before_filter :require_admin
   before_filter :find_view_customize, :except => [:index, :new, :create]
 

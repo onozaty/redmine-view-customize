@@ -29,3 +29,7 @@ textarea#view_customize_code {
     resize: vertical;
     width: 95%;
 }
+
+#admin-menu a.view_customize {
+    background-image: url("../images/server_key.png");
+}
