@@ -6,6 +6,14 @@ table.list td.id {
     min-width: 40px;
 }
 
+table.list tr.disable {
+    color: #aaaaaa;
+}
+
+table.list tr.private {
+    font-style: italic;
+}
+
 table.view_customize {
     width: 100%;
 }

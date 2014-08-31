@@ -19,16 +19,20 @@
       <th><%=h l(:field_path_pattern) %></th>
       <th><%=h l(:field_customize_type) %></th>
       <th><%=h l(:field_code) %></th>
+      <th><%=h l(:field_is_private) %></th>
+      <th><%=h l(:field_is_enabled) %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @view_customizes.each do |view_customize| %>
-    <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= link_to view_customize.id, view_customize_path(view_customize.id) %></td>
+    <tr class="<%= cycle('odd', 'even') %><%= ' disable' unless view_customize.is_enabled %><%= ' private' unless !view_customize.is_private %>">
+      <td class="id"><%= link_to view_customize.id, view_customize_path(view_customize.id) %></td>
       <td class="path"><%=h view_customize.path_pattern %></td>
       <td><%=h view_customize.customize_type_name %></td>
       <td class="code"><%=h truncate(view_customize.code, :length => 80) %></td>
+      <td><%=h view_customize.is_private ? l(:general_text_yes) : l(:general_text_no) %></td>
+      <td><%=h view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
     </tr>
     <% end %>
   </tbody>
