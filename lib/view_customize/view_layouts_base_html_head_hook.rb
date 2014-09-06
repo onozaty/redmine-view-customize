@@ -15,7 +15,7 @@ module RedmineViewCustomize
     def match_customize(path)
 
       ViewCustomize.all.select {|item|
-        path =~ Regexp.new(item.path_pattern)
+        item.available? && path =~ Regexp.new(item.path_pattern)
       }
     end
 

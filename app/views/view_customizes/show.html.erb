@@ -28,11 +28,15 @@
 	    @view_customize.code, @view_customize.customize_type == 1 ? :js : :css) %></td>
   </tr>
   <tr>
+    <th><%=h l(:field_is_enabled) %>:</th>
+    <td><%=h @view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
+  </tr>
+  <tr>
     <th><%=h l(:field_is_private) %>:</th>
     <td><%=h @view_customize.is_private ? l(:general_text_yes) : l(:general_text_no) %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_is_enabled) %>:</th>
-    <td><%=h @view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
+    <th><%=h l(:field_author) %>:</th>
+    <td><%=h @view_customize.author.name unless @view_customize.author == nil %></td>
   </tr>
 </table>

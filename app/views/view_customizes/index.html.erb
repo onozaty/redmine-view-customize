@@ -19,8 +19,9 @@
       <th><%=h l(:field_path_pattern) %></th>
       <th><%=h l(:field_customize_type) %></th>
       <th><%=h l(:field_code) %></th>
-      <th><%=h l(:field_is_private) %></th>
       <th><%=h l(:field_is_enabled) %></th>
+      <th><%=h l(:field_is_private) %></th>
+      <!--<th><%=h l(:field_author) %></th>-->
     </tr>
   </thead>
 
@@ -31,8 +32,9 @@
       <td class="path"><%=h view_customize.path_pattern %></td>
       <td><%=h view_customize.customize_type_name %></td>
       <td class="code"><%=h truncate(view_customize.code, :length => 80) %></td>
-      <td><%=h view_customize.is_private ? l(:general_text_yes) : l(:general_text_no) %></td>
       <td><%=h view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
+      <td><%=h view_customize.is_private ? l(:general_text_yes) : l(:general_text_no) %></td>
+      <!--<td><%=h view_customize.author.name unless view_customize.author == nil %></td>-->
     </tr>
     <% end %>
   </tbody>

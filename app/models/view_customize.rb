@@ -1,6 +1,8 @@
 class ViewCustomize < ActiveRecord::Base
   unloadable
 
+  belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
+
   validates_presence_of :path_pattern
   validates_length_of :path_pattern, :maximum => 255
 
@@ -28,6 +30,17 @@ class ViewCustomize < ActiveRecord::Base
 
   def is_stylesheet?
     customize_type == TYPE_STYLESHEET
+  end
+
+  def available?(user=User.current)
+    is_enabled && (!is_private || author == user)
+  end
+
+  def initialize(attributes=nil, *args)
+    super
+    if new_record?
+      self.author = User.current
+    end
   end
   
 end
