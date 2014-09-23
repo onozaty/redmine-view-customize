@@ -19,6 +19,8 @@ Install the plugin in your Redmine plugins directory, clone this repository as `
     cd ../
     rake redmine:plugins:migrate
 
+**note: The directory name must be a `view_customize`. Directory name is different, it will fail to run the Plugin.**
+
 Usage
 ------------
 
