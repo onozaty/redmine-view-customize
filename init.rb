@@ -4,7 +4,7 @@ Redmine::Plugin.register :view_customize do
   name 'View Customize plugin'
   author 'onozaty'
   description 'View Customize plugin for Redmine'
-  version '1.1.0'
+  version '1.1.1'
   url 'https://github.com/onozaty/redmine-view-customize'
   author_url 'https://github.com/onozaty'
 
