@@ -1,3 +1,5 @@
+
+
 class ViewCustomize < ActiveRecord::Base
   unloadable
 
@@ -7,6 +9,8 @@ class ViewCustomize < ActiveRecord::Base
   validates_length_of :path_pattern, :maximum => 255
 
   validates_presence_of :code
+
+  validate :valid_pattern
 
   TYPE_JAVASCRIPT = 1
   TYPE_STYLESHEET = 2
@@ -34,6 +38,14 @@ class ViewCustomize < ActiveRecord::Base
 
   def available?(user=User.current)
     is_enabled && (!is_private || author == user)
+  end
+
+  def valid_pattern
+    begin
+      Regexp.compile(path_pattern)
+    rescue
+      errors.add(:path_pattern, :invalid)
+    end
   end
 
   def initialize(attributes=nil, *args)
