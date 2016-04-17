@@ -6,7 +6,7 @@ module RedmineViewCustomize
         html(item)
       }
 
-      return "<!-- view customize plugin -->\n" + 
+      return "<!-- [View customize plugin] Path:#{context[:request].path_info} -->\n" +
         view_customize_html_parts.join("\n").html_safe
     end
 
@@ -20,16 +20,20 @@ module RedmineViewCustomize
     end
 
     def html(view_customize)
+      
+      html = "<!-- Id:#{view_customize.id} -->\n"
 
       if view_customize.is_javascript? then
-        return "<script type=\"text/javascript\">\n//<![CDATA[\n" + 
-          view_customize.code +
-          "\n//]]>\n</script>"
+        html << "<script type=\"text/javascript\">\n//<![CDATA[\n"
+        html << view_customize.code
+        html << "\n//]]>\n</script>"
       elsif view_customize.is_stylesheet? then
-        return "<style type=\"text/css\">\n" +
-          view_customize.code +
-          "\n</style>"
+        html << "<style type=\"text/css\">\n"
+        html << view_customize.code
+        html << "\n</style>"
       end
+
+      return html
     end
   end
 end
