@@ -1,6 +1,6 @@
 <%= render :partial => 'view_customizes/header' %>
 
-<h2><%= link_to l(:label_view_customize_plural), view_customizes_path %> &#187; <%=l(:label_view_customizes_new) %></h2>
+<%= title [l(:label_view_customize_plural), view_customizes_path], l(:label_view_customizes_new) %>
 
 <%= labelled_form_for :view_customize, @view_customize,
         :url => view_customizes_path,
