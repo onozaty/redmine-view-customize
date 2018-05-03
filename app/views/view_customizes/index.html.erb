@@ -15,12 +15,12 @@
 
   <thead>
     <tr>
-      <th>#</th>
-      <th><%=h l(:field_path_pattern) %></th>
-      <th><%=h l(:field_customize_type) %></th>
-      <th><%=h l(:field_code) %></th>
-      <th><%=h l(:field_is_enabled) %></th>
-      <th><%=h l(:field_is_private) %></th>
+      <%= sort_header_tag('id', :caption => '#') %>
+      <%= sort_header_tag('path_pattern', :caption => l(:field_path_pattern)) %>
+      <%= sort_header_tag('customize_type', :caption => l(:field_customize_type)) %>
+      <%= sort_header_tag('code', :caption => l(:field_code)) %>
+      <%= sort_header_tag('is_enabled', :caption => l(:field_is_enabled)) %>
+      <%= sort_header_tag('is_private', :caption => l(:field_is_private)) %>
       <!--<th><%=h l(:field_author) %></th>-->
     </tr>
   </thead>

@@ -6,8 +6,13 @@ class ViewCustomizesController < ApplicationController
   before_filter :require_admin
   before_filter :find_view_customize, :except => [:index, :new, :create]
 
+  helper :sort
+  include SortHelper
+
   def index
-    @view_customizes = ViewCustomize.all
+    sort_init 'id', 'desc'
+    sort_update %w(id path_pattern customize_type code is_enabled is_private)
+    @view_customizes = ViewCustomize.all.order(sort_clause)
   end
 
   def new
