@@ -11,7 +11,7 @@ Redmine::Plugin.register :view_customize do
   menu :admin_menu, :view_customizes,
     { :controller => 'view_customizes', :action => 'index' },
     :caption => :label_view_customize,
-    :html => { :class => 'settings'},
+    :html => { :class => 'icon icon-view_customize'},
     :if => Proc.new { User.current.admin? }
 
 end
