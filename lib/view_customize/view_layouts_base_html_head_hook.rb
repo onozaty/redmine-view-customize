@@ -3,9 +3,7 @@ module RedmineViewCustomize
     def view_layouts_base_html_head(context={})
 
       header = "\n<!-- [view customize plugin] path:#{context[:request].path_info} -->\n"
-      if context[:controller].class.name == "AdminController" then
-        header << stylesheet_link_tag("view_customize", plugin: "view_customize")
-      end
+      header << stylesheet_link_tag("view_customize", plugin: "view_customize")
 
       view_customize_html_parts = match_customize(context[:request].path_info).map {|item|
         html(item)
