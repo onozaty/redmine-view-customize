@@ -19,13 +19,17 @@
     <td><%=h @view_customize.path_pattern %></td>
   </tr>
   <tr>
+    <th><%=h l(:field_insertion_position) %>:</th>
+    <td><%=h l(@view_customize.insertion_position_label) %></td>
+  </tr>
+  <tr>
     <th><%=h l(:field_customize_type) %>:</th>
-    <td><%=h @view_customize.customize_type_name %></td>
+    <td><%=h l(@view_customize.customize_type_label) %></td>
   </tr>
   <tr>
     <th><%=h l(:field_code) %>:</th>
     <td><%= highlight_by_language(
-	    @view_customize.code, @view_customize.customize_type == 1 ? :js : :css) %></td>
+	    @view_customize.code, @view_customize.is_javascript? ? :js : :css) %></td>
   </tr>
   <tr>
     <th><%=h l(:field_is_enabled) %>:</th>
