@@ -1,5 +1,5 @@
 module RedmineViewCustomize
-  class ViewLayoutsBaseHtmlHeadHook < Redmine::Hook::ViewListener
+  class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
 
       path = context[:request].path_info;

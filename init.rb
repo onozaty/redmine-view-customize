@@ -1,4 +1,4 @@
-require_dependency 'view_customize/view_layouts_base_html_head_hook'
+require_dependency 'view_customize/view_hook'
 
 Redmine::Plugin.register :view_customize do
   name 'View Customize plugin'
