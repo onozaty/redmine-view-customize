@@ -7,7 +7,7 @@ en:
   label_stylesheet: "StyleSheet"
   label_insertion_position_html_head: "All html head"
   label_insertion_position_issue_form: "Issue form bottom"
-  label_insertion_position_issue_show: "Issue show bottom"
+  label_insertion_position_issue_show: "Issue detail bottom"
   field_path_pattern: "Path pattern"
   field_insertion_position: "Insertion position"
   field_customize_type: "Type"

@@ -11,7 +11,7 @@ class ViewCustomizesController < ApplicationController
 
   def index
     sort_init 'id', 'desc'
-    sort_update %w(id path_pattern customize_type code is_enabled is_private)
+    sort_update %w(id path_pattern insertion_position customize_type code is_enabled is_private)
     @view_customizes = ViewCustomize.all.order(sort_clause)
   end
 
