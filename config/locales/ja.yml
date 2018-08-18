@@ -1,0 +1,13 @@
+# English strings go here for Rails i18n
+ja:
+  label_view_customize: "表示のカスタマイス"
+  label_view_customize_plural: "表示のカスタマイズ"
+  label_view_customizes_new: "新しい表示のカスタマイズ"
+  field_path_pattern: "パスのパターン"
+  field_customize_type: "種類"
+  field_code: "コード"
+  field_is_private: "プライベート"
+  field_is_enabled: "有効"
+  field_author: "著者"
+  text_path_pattern_info: "パスのパターンは正規表現で指定します。 (例 /issues/[0-9]+)"
+  text_path_pattern_match_info: "もしページのパスがマッチした場合、次のコードを実行します。"
