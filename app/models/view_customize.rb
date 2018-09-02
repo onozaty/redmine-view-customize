@@ -13,11 +13,11 @@ class ViewCustomize < ActiveRecord::Base
   attr_protected :id
 
   TYPE_JAVASCRIPT = "javascript"
-  TYPE_STYLESHEET = "stylesheet"
+  TYPE_CSS = "css"
 
   @@customize_types = {
     :label_javascript => TYPE_JAVASCRIPT,
-    :label_stylesheet => TYPE_STYLESHEET
+    :label_css => TYPE_CSS
   }
 
   INSERTION_POSITION_HTML_HEAD = "html_head"
@@ -50,8 +50,8 @@ class ViewCustomize < ActiveRecord::Base
     customize_type == TYPE_JAVASCRIPT
   end
 
-  def is_stylesheet?
-    customize_type == TYPE_STYLESHEET
+  def is_css?
+    customize_type == TYPE_CSS
   end
 
   def available?(user=User.current)

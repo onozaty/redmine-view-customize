@@ -59,7 +59,7 @@ module RedmineViewCustomize
         html << "<script type=\"text/javascript\">\n//<![CDATA[\n"
         html << view_customize.code
         html << "\n//]]>\n</script>"
-      elsif view_customize.is_stylesheet?
+      elsif view_customize.is_css?
         html << "<style type=\"text/css\">\n"
         html << view_customize.code
         html << "\n</style>"

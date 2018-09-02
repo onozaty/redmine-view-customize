@@ -4,7 +4,7 @@ en:
   label_view_customize_plural: "View customizes"
   label_view_customizes_new: "New view customize"
   label_javascript: "JavaScript"
-  label_stylesheet: "StyleSheet"
+  label_css: "CSS"
   label_insertion_position_html_head: "Head of all pages"
   label_insertion_position_issue_form: "Bottom of issue form"
   label_insertion_position_issue_show: "Bottom of issue detail"
