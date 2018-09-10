@@ -32,6 +32,10 @@
 	    @view_customize.code, @view_customize.is_javascript? ? :js : :css) %></td>
   </tr>
   <tr>
+    <th><%=h l(:field_comments) %>:</th>
+    <td><%=h @view_customize.comments %></td>
+  </tr>
+  <tr>
     <th><%=h l(:field_is_enabled) %>:</th>
     <td><%=h @view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
   </tr>

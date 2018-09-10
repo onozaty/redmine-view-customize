@@ -11,6 +11,7 @@ ja:
   field_insertion_position: "挿入位置"
   field_customize_type: "種別"
   field_code: "コード"
+  field_comments: "コメント"
   field_is_private: "プライベート"
   field_is_enabled: "有効"
   field_author: "作成者"

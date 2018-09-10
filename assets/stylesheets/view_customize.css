@@ -1,9 +1,16 @@
-table.view_customize.list td.code, table.view_customize.list td.path {
+table.view_customize.list td.path, table.view_customize.list td.comments {
     text-align: left;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap : break-word;
 }
 
 table.view_customize.list td.id {
-    min-width: 40px;
+    padding-left: 5px;
+}
+
+table.view_customize.list td.insertion_position {
+    white-space: nowrap;
 }
 
 table.view_customize.list tr.disable {
@@ -39,6 +46,10 @@ table.view_customize.box td pre {
 
 textarea#view_customize_code {
     resize: vertical;
+    width: 95%;
+}
+
+input#view_customize_comments {
     width: 95%;
 }
 
