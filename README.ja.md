@@ -75,6 +75,8 @@ Redmineのプラグインディレクトリに、このリポジトリを`view_c
 
 ![Screenshot of enabled and private](screenshots/enable_private.en.png)
 
+まずは「Private」で動作確認したうえで、動作に問題なければ全体に公開するといった使い方ができます。
+
 ## 設定例
 
 * [onozaty/redmine\-view\-customize\-scripts: Script list for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
