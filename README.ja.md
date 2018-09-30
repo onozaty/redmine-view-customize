@@ -77,6 +77,51 @@ Redmineのプラグインディレクトリに、このリポジトリを`view_c
 
 まずは「Private」で動作確認したうえで、動作に問題なければ全体に公開するといった使い方ができます。
 
+### ViewCustomize.context (JavaScript)
+
+JavaScriptのコードでは、`ViewCustomize.context`としてユーザやプロジェクトの情報にアクセスすることができます。
+
+`ViewCustomize.context`の情報は下記のようなイメージです。
+
+```javascript
+ViewCustomize = {
+  "context": {
+    "user": {
+      "id": 1,
+      "login": "admin",
+      "admin": true,
+      "firstname": "Redmine",
+      "lastname": "Admin",
+      "groups": [
+        {"id": 5, "name": "Group1"}
+      ],
+      "roles": [ // ユーザに紐づく全てのロール(全プロジェクト)
+        {"id": 4, "name": "Developer"},
+        {"id": 6, "name": "RoleX"}
+      ],
+      "apiKey": "3dd35b5ad8456d90d21ef882f7aea651d367a9d8",
+      "customFields": [
+        {"id": 1, "name": "[Custom field] Text", "value": "text"},
+        {"id": 2, "name": "[Custom field] List", "value": ["B", "A"]},
+        {"id": 3, "name": "[Custom field] Boolean", "value": "1"}
+      ]
+    },
+    "project": {
+      "identifier": "project-a",
+      "name": "Project A",
+      "roles": [ // プロジェクト内でのロール
+        {"id": 6, "name": "RoleX"}
+      ]
+    },
+    "issue": {
+      "id": 1
+    }
+  }
+}
+```
+
+例えばユーザのAPIキーにアクセスするには`ViewCustomize.context.user.apiKey`となります。
+
 ## 設定例
 
 * [onozaty/redmine\-view\-customize\-scripts: Script list for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)

@@ -85,6 +85,51 @@ You can disable it by unchecking "Enabled". If you check "Private", it will be e
 
 If you check the operation with "Private" and there is no problem in operation, it will be good to release it to the all.
 
+### ViewCustomize.context (JavaScript)
+
+You can access information on users and projects using `ViewCustomize.context`.
+
+`ViewCustomize.context` is as follows.
+
+```javascript
+ViewCustomize = {
+  "context": {
+    "user": {
+      "id": 1,
+      "login": "admin",
+      "admin": true,
+      "firstname": "Redmine",
+      "lastname": "Admin",
+      "groups": [
+        {"id": 5, "name": "Group1"}
+      ],
+      "roles": [ // All roles associated with users (all projects)
+        {"id": 4, "name": "Developer"},
+        {"id": 6, "name": "RoleX"}
+      ],
+      "apiKey": "3dd35b5ad8456d90d21ef882f7aea651d367a9d8",
+      "customFields": [
+        {"id": 1, "name": "[Custom field] Text", "value": "text"},
+        {"id": 2, "name": "[Custom field] List", "value": ["B", "A"]},
+        {"id": 3, "name": "[Custom field] Boolean", "value": "1"}
+      ]
+    },
+    "project": {
+      "identifier": "project-a",
+      "name": "Project A",
+      "roles": [ // Roles in the project
+        {"id": 6, "name": "RoleX"}
+      ]
+    },
+    "issue": {
+      "id": 1
+    }
+  }
+}
+```
+
+For example, to access the user's API key is `ViewCustomize.context.user.apiKey`.
+
 ## Examples
 
 * [onozaty/redmine\-view\-customize\-scripts: Script list for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
