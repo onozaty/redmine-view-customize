@@ -9,13 +9,25 @@
     </em>
   </p>
   <p>
+    <%= form.select :insertion_position,
+          options_for_select(
+            @view_customize.insertion_positions.map {|key, val| [l(key), val]},
+            :selected => @view_customize.insertion_position),
+          :required => true %>
+  </p>
+  <p>
     <%= form.select :customize_type,
-	 options_for_select(@view_customize.customize_types, :selected => @view_customize.customize_type),
-	 :required => true %>
+          options_for_select(
+            @view_customize.customize_types.map {|key, val| [l(key), val]},
+            :selected => @view_customize.customize_type),
+          :required => true %>
   </p>
   <p>
     <%= form.text_area :code,
-	 :required => true, :rows => 12 %>
+         :required => true, :rows => 12 %>
+  </p>
+  <p>
+    <%= form.text_field :comments, :size => 100 %>
   </p>
   <p>
     <%= form.check_box :is_enabled %>

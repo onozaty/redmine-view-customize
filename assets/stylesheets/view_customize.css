@@ -1,24 +1,31 @@
-table.list td.code, table.list td.path {
+table.view_customize.list td.path, table.view_customize.list td.comments {
     text-align: left;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap : break-word;
 }
 
-table.list td.id {
-    min-width: 40px;
+table.view_customize.list td.id {
+    padding-left: 5px;
 }
 
-table.list tr.disable {
+table.view_customize.list td.insertion_position {
+    white-space: nowrap;
+}
+
+table.view_customize.list tr.disable {
     color: #aaaaaa;
 }
 
-table.list tr.private {
+table.view_customize.list tr.private {
     font-style: italic;
 }
 
-table.view_customize {
+table.view_customize.box {
     width: 100%;
 }
 
-table.view_customize th {
+table.view_customize.box th {
     text-align: right;
     vertical-align: top;
     width: 10%;
@@ -26,11 +33,11 @@ table.view_customize th {
     white-space: nowrap;
 }
 
-table.view_customize td {
+table.view_customize.box td {
     vertical-align: top;
 }
 
-table.view_customize td pre {
+table.view_customize.box td pre {
     margin: 0;
     padding: 2px 4px;
     background-color: #FFFFFF;
@@ -42,6 +49,10 @@ textarea#view_customize_code {
     width: 95%;
 }
 
-#admin-menu a.view_customize {
-    background-image: url("../images/server_key.png");
+input#view_customize_comments {
+    width: 95%;
+}
+
+.icon-view_customize {
+    background-image: url("../images/view_customize.png");
 }

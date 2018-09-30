@@ -1,5 +1,3 @@
-<%= render :partial => 'view_customizes/header' %>
-
 <div class="contextual">
   <%= link_to l(:label_view_customizes_new), 
       new_view_customize_path, :class => 'icon icon-add' %>
@@ -11,17 +9,16 @@
   <p class="nodata"><%= l(:label_no_data) %></p>
 <% else %>
 
-<table class="list">
+<table class="list view_customize">
 
   <thead>
     <tr>
-      <th>#</th>
-      <th><%=h l(:field_path_pattern) %></th>
-      <th><%=h l(:field_customize_type) %></th>
-      <th><%=h l(:field_code) %></th>
-      <th><%=h l(:field_is_enabled) %></th>
-      <th><%=h l(:field_is_private) %></th>
-      <!--<th><%=h l(:field_author) %></th>-->
+      <%= sort_header_tag('id', :caption => '#') %>
+      <%= sort_header_tag('path_pattern', :caption => l(:field_path_pattern)) %>
+      <%= sort_header_tag('insertion_position', :caption => l(:field_insertion_position)) %>
+      <%= sort_header_tag('customize_type', :caption => l(:field_customize_type)) %>
+      <%= sort_header_tag('comments', :caption => l(:field_comments) + ' / ' + l(:field_code)) %>
+      <%= sort_header_tag('is_private', :caption => l(:field_is_private)) %>
     </tr>
   </thead>
 
@@ -30,11 +27,10 @@
     <tr class="<%= cycle('odd', 'even') %><%= ' disable' unless view_customize.is_enabled %><%= ' private' unless !view_customize.is_private %>">
       <td class="id"><%= link_to view_customize.id, view_customize_path(view_customize.id) %></td>
       <td class="path"><%=h view_customize.path_pattern %></td>
-      <td><%=h view_customize.customize_type_name %></td>
-      <td class="code"><%=h truncate(view_customize.code, :length => 80) %></td>
-      <td><%=h view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
+      <td class="insertion_position"><%=h l(view_customize.insertion_position_label) %></td>
+      <td><%=h l(view_customize.customize_type_label) %></td>
+      <td class="comments"><%=h view_customize.comments.present? ? view_customize.comments : truncate(view_customize.code, :length => 80) %></td>
       <td><%=h view_customize.is_private ? l(:general_text_yes) : l(:general_text_no) %></td>
-      <!--<td><%=h view_customize.author.name unless view_customize.author == nil %></td>-->
     </tr>
     <% end %>
   </tbody>

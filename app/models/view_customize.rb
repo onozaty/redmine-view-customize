@@ -1,5 +1,3 @@
-
-
 class ViewCustomize < ActiveRecord::Base
   unloadable
 
@@ -14,28 +12,46 @@ class ViewCustomize < ActiveRecord::Base
 
   attr_protected :id
 
-  TYPE_JAVASCRIPT = 1
-  TYPE_STYLESHEET = 2
+  TYPE_JAVASCRIPT = "javascript"
+  TYPE_CSS = "css"
 
   @@customize_types = {
-    "JavaScript" => TYPE_JAVASCRIPT,
-    "StyleSheet" => TYPE_STYLESHEET
+    :label_javascript => TYPE_JAVASCRIPT,
+    :label_css => TYPE_CSS
+  }
+
+  INSERTION_POSITION_HTML_HEAD = "html_head"
+  INSERTION_POSITION_ISSUE_FORM = "issue_form"
+  INSERTION_POSITION_ISSUE_SHOW = "issue_show"
+
+  @@insertion_positions = {
+    :label_insertion_position_html_head => INSERTION_POSITION_HTML_HEAD,
+    :label_insertion_position_issue_form => INSERTION_POSITION_ISSUE_FORM,
+    :label_insertion_position_issue_show => INSERTION_POSITION_ISSUE_SHOW
   }
 
   def customize_types
     @@customize_types
   end
 
-  def customize_type_name
+  def customize_type_label
     @@customize_types.key(customize_type)
+  end
+
+  def insertion_positions
+    @@insertion_positions
+  end
+
+  def insertion_position_label
+    @@insertion_positions.key(insertion_position)
   end
 
   def is_javascript?
     customize_type == TYPE_JAVASCRIPT
   end
 
-  def is_stylesheet?
-    customize_type == TYPE_STYLESHEET
+  def is_css?
+    customize_type == TYPE_CSS
   end
 
   def available?(user=User.current)
