@@ -95,10 +95,6 @@ ViewCustomize = {
       "groups": [
         {"id": 5, "name": "Group1"}
       ],
-      "roles": [ // ユーザに紐づく全てのロール(全プロジェクト)
-        {"id": 4, "name": "Developer"},
-        {"id": 6, "name": "RoleX"}
-      ],
       "apiKey": "3dd35b5ad8456d90d21ef882f7aea651d367a9d8",
       "customFields": [
         {"id": 1, "name": "[Custom field] Text", "value": "text"},
@@ -109,7 +105,7 @@ ViewCustomize = {
     "project": {
       "identifier": "project-a",
       "name": "Project A",
-      "roles": [ // プロジェクト内でのロール
+      "roles": [
         {"id": 6, "name": "RoleX"}
       ]
     },

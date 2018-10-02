@@ -79,7 +79,6 @@ module RedmineViewCustomize
           "firstname" => user.firstname,
           "lastname" => user.lastname,
           "groups" => user.groups.map {|group| { "id" => group.id, "name" => group.name }},
-          "roles" => user.roles.map {|role| { "id" => role.id, "name" => role.name }},
           "apiKey" => (user.api_token.value unless user.api_token.nil?),
           "customFields" => user.custom_field_values.map {|field| { "id" => field.custom_field.id, "name" => field.custom_field.name, "value" => field.value }}
         }
