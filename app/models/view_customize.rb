@@ -10,8 +10,6 @@ class ViewCustomize < ActiveRecord::Base
 
   validate :valid_pattern
 
-  attr_protected :id
-
   TYPE_JAVASCRIPT = "javascript"
   TYPE_CSS = "css"
 
