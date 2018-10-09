@@ -23,25 +23,30 @@ table.view_customize.list tr.private {
 
 table.view_customize.box {
     width: 100%;
+    table-layout: fixed;
 }
 
 table.view_customize.box th {
     text-align: right;
     vertical-align: top;
-    width: 10%;
-    padding: 0 10px;
-    white-space: nowrap;
+    width: 160px;
+    padding: 2px 10px 2px 0px;
 }
 
 table.view_customize.box td {
     vertical-align: top;
+    padding: 2px;
 }
 
 table.view_customize.box td pre {
     margin: 0;
     padding: 2px 4px;
-    background-color: #FFFFFF;
-    border: 1px solid #E4E4E4;
+    background-color: #fafafa;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 textarea#view_customize_code {
