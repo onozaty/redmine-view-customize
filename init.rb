@@ -1,6 +1,7 @@
 require_dependency 'view_customize/view_hook'
 
 Redmine::Plugin.register :view_customize do
+  requires_redmine :version_or_higher => '3.0.0'
   name 'View Customize plugin'
   author 'onozaty'
   description 'View Customize plugin for Redmine'
