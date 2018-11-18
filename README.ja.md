@@ -127,7 +127,8 @@ ViewCustomize = {
 
 ## サポートバージョン
 
-* Redmine 2.0.x 以降
+* 最新バージョン : Redmine 3.1.x 以降
+* 1.2.2 : Redmine 2.0.x から 3.4.x
 
 ## ライセンス
 

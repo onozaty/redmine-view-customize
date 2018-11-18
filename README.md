@@ -133,8 +133,8 @@ For example, to access the user's API key is `ViewCustomize.context.user.apiKey`
 
 ## Supported versions
 
-* Current version : Redmine 3.0.x or later
-* 1.2.2 : Redmine 2.0.x or later
+* Current version : Redmine 3.1.x or later
+* 1.2.2 : Redmine 2.0.x - 3.4.x
 
 ## License
 
