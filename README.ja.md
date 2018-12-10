@@ -10,10 +10,13 @@
 
 Redmineのプラグインディレクトリに、このリポジトリを`view_customize`としてクローンします。
 
-    cd {RAILS_ROOT}/plugins
-    git clone https://github.com/onozaty/redmine-view-customize.git view_customize
-    cd ../
-    bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+```
+cd {RAILS_ROOT}/plugins
+git clone https://github.com/onozaty/redmine-view-customize.git view_customize
+cd ../
+bundle install --without development test
+bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+```
 
 **注意: ディレクトリ名は`view_customize`とする必要があります。ディレクトリ名が異なると、プラグインの実行に失敗します。**
 
@@ -124,7 +127,8 @@ ViewCustomize = {
 
 ## サポートバージョン
 
-* Redmine 2.0.x 以降
+* 最新バージョン : Redmine 3.1.x 以降
+* 1.2.2 : Redmine 2.0.x から 3.4.x
 
 ## ライセンス
 

@@ -14,6 +14,7 @@ Install the plugin in your Redmine plugins directory, clone this repository as `
 cd {RAILS_ROOT}/plugins
 git clone https://github.com/onozaty/redmine-view-customize.git view_customize
 cd ../
+bundle install --without development test
 bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 ```
 
@@ -130,9 +131,10 @@ For example, to access the user's API key is `ViewCustomize.context.user.apiKey`
 
 * [onozaty/redmine\-view\-customize\-scripts: Script list for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
 
-## Redmine 2.0.x or later
+## Supported versions
 
-* Redmine 2.0.x or later
+* Current version : Redmine 3.1.x or later
+* 1.2.2 : Redmine 2.0.x - 3.4.x
 
 ## License
 

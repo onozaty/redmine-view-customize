@@ -3,8 +3,8 @@ class ViewCustomizesController < ApplicationController
 
   layout 'admin'
 
-  before_filter :require_admin
-  before_filter :find_view_customize, :except => [:index, :new, :create]
+  before_action :require_admin
+  before_action :find_view_customize, :except => [:index, :new, :create]
 
   helper :sort
   include SortHelper
@@ -20,7 +20,7 @@ class ViewCustomizesController < ApplicationController
   end
 
   def create
-    @view_customize = ViewCustomize.new(params[:view_customize])
+    @view_customize = ViewCustomize.new(view_customize_params)
 
     if @view_customize.save    
       flash[:notice] = l(:notice_successful_create)
@@ -37,7 +37,7 @@ class ViewCustomizesController < ApplicationController
   end
 
   def update
-    @view_customize.attributes = params[:view_customize]
+    @view_customize.attributes = view_customize_params
     if @view_customize.save
       flash[:notice] = l(:notice_successful_update)
       redirect_to view_customize_path(@view_customize.id)
@@ -61,4 +61,8 @@ class ViewCustomizesController < ApplicationController
     render_404 unless @view_customize
   end
 
+  def view_customize_params
+    params.require(:view_customize)
+      .permit(:path_pattern, :customize_type, :code, :is_enabled, :is_private, :insertion_position, :comments)
+  end
 end

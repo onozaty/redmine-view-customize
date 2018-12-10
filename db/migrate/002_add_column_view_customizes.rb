@@ -1,4 +1,4 @@
-class AddColumnViewCustomizes < ActiveRecord::Migration
+class AddColumnViewCustomizes < ActiveRecord::CompatibleLegacyMigration.migration_class
   def up
     add_column :view_customizes, :is_enabled, :boolean, :null => false, :default => true
     add_column :view_customizes, :is_private, :boolean, :null => false, :default => false

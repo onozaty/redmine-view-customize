@@ -14,36 +14,36 @@
 
 <table class="box view_customize">
   <tr>
-    <th><%=h l(:field_path_pattern) %>:</th>
+    <th><%=h l(:field_path_pattern) %></th>
     <td><%=h @view_customize.path_pattern %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_insertion_position) %>:</th>
+    <th><%=h l(:field_insertion_position) %></th>
     <td><%=h l(@view_customize.insertion_position_label) %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_customize_type) %>:</th>
+    <th><%=h l(:field_customize_type) %></th>
     <td><%=h l(@view_customize.customize_type_label) %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_code) %>:</th>
-    <td><%= highlight_by_language(
-	    @view_customize.code, @view_customize.is_javascript? ? :js : :css) %></td>
+    <th><%=h l(:field_code) %></th>
+    <td><div><%= highlight_by_language(
+	    @view_customize.code, @view_customize.is_javascript? ? :js : :css) %></div></td>
   </tr>
   <tr>
-    <th><%=h l(:field_comments) %>:</th>
+    <th><%=h l(:field_comments) %></th>
     <td><%=h @view_customize.comments %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_is_enabled) %>:</th>
+    <th><%=h l(:field_is_enabled) %></th>
     <td><%=h @view_customize.is_enabled ? l(:general_text_yes) : l(:general_text_no) %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_is_private) %>:</th>
+    <th><%=h l(:field_is_private) %></th>
     <td><%=h @view_customize.is_private ? l(:general_text_yes) : l(:general_text_no) %></td>
   </tr>
   <tr>
-    <th><%=h l(:field_author) %>:</th>
+    <th><%=h l(:field_author) %></th>
     <td><%=h @view_customize.author.name unless @view_customize.author == nil %></td>
   </tr>
 </table>

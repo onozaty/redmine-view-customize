@@ -1,4 +1,4 @@
-class AddCommentsToViewCustomizes < ActiveRecord::Migration
+class AddCommentsToViewCustomizes < ActiveRecord::CompatibleLegacyMigration.migration_class
   def up
     add_column :view_customizes, :comments, :string, :null => true
   end
