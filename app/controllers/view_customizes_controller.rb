@@ -1,6 +1,4 @@
 class ViewCustomizesController < ApplicationController
-  unloadable
-
   layout 'admin'
 
   before_action :require_admin
