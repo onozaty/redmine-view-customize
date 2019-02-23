@@ -28,7 +28,7 @@
   <tr>
     <th><%=h l(:field_code) %></th>
     <td><div><%= highlight_by_language(
-	    @view_customize.code, @view_customize.customize_type) %></div></td>
+	    @view_customize.code, @view_customize.customize_type.to_sym) %></div></td>
   </tr>
   <tr>
     <th><%=h l(:field_comments) %></th>
