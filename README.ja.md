@@ -4,7 +4,7 @@
 
 ## 機能
 
-条件に一致した画面に対して、JavaScript、CSSを埋め込むことで、画面をカスタマイズします。
+条件に一致した画面に対して、JavaScript、CSS、HTMLを埋め込むことで、画面をカスタマイズします。
 
 ## インストール方法
 
@@ -50,7 +50,7 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
 該当ページにコードの挿入位置に該当する箇所が無かった場合、コードは埋め込まれません。たとえば、「Path pattern」で`.*`で全ページを指定しても、「Insertion position」に「Bottom of issue detail」を指定していると、チケットの詳細表示画面でしか実行されないことになります。
 
-「Type」にてコードの種類(「JavaScript」または「CSS」)を選択し、「Code」に実際のコードを入力します。
+「Type」にてコードの種類(「JavaScript」、「CSS」または「HTML」)を選択し、「Code」に実際のコードを入力します。
 
 「Comment」にはカスタマイズに対する概要を記載できます。ここで入力した内容は、一覧表示で表示されます。(Commentが入力されていればComment、Commentが入力されていない場合はCodeが一覧に表示)
 
