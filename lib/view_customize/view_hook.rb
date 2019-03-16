@@ -63,6 +63,8 @@ module RedmineViewCustomize
         html << "<style type=\"text/css\">\n"
         html << view_customize.code
         html << "\n</style>"
+      elsif view_customize.is_html?
+        html << view_customize.code
       end
 
       return html
