@@ -4,7 +4,7 @@ This a plugin allows you to customize the view for the [Redmine](http://www.redm
 
 ## Features
 
-Customize the page by inserting JavaScript or CSS on the page that matched the condition.
+Customize the page by inserting JavaScript, CSS or HTML on the page that matched the condition.
 
 ## Installation
 
@@ -53,7 +53,7 @@ Issue input fields are reconstructed when trackers or statuses are changed. If "
 If there is no part corresponding to the insertion position of the code on the page, the code is not insert.
 For example, even if you specify `.*` in "Path pattern", if "Bottom of issue detail" is specified for "Insertion position", it will be executed only on the issue detail page.
 
-In "Type", select the type of code ("JavaScript" or "CSS") and enter the actual code in "Code".
+In "Type", select the type of code ("JavaScript", "CSS" or "HTML") and enter the actual code in "Code".
 
 For "Comment" you can put an overview on customization. The contents entered here are displayed in the list display.
 When "Comment" is entered, "Comment" is displayed on the list.
@@ -133,7 +133,7 @@ For example, to access the user's API key is `ViewCustomize.context.user.apiKey`
 
 ## Supported versions
 
-* Current version : Redmine 3.1.x or later
+* Current version : Redmine 3.1.x - 3.4.x, 4.0.x or later
 * 1.2.2 : Redmine 2.0.x - 3.4.x
 
 ## License
