@@ -1,5 +1,3 @@
-require_dependency 'view_customize/view_hook'
-
 Redmine::Plugin.register :view_customize do
   requires_redmine :version_or_higher => '3.1.0'
   name 'View Customize plugin'
@@ -14,5 +12,10 @@ Redmine::Plugin.register :view_customize do
     :caption => :label_view_customize,
     :html => { :class => 'icon icon-view_customize'},
     :if => Proc.new { User.current.admin? }
+    
+  should_be_disabled false if Redmine::Plugin.installed?(:easy_extensions)
+end
 
+unless Redmine::Plugin.installed?(:easy_extensions)
+  require_relative 'after_init'
 end
