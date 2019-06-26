@@ -91,7 +91,8 @@ module RedmineViewCustomize
         context["project"] = {
           "identifier" => project.identifier,
           "name" => project.name,
-          "roles" => user.roles_for_project(project).map {|role| { "id" => role.id, "name" => role.name }}
+          "roles" => user.roles_for_project(project).map {|role| { "id" => role.id, "name" => role.name }},
+          "customFields" => project.custom_field_values.map {|field| { "id" => field.custom_field.id, "name" => field.custom_field.name, "value" => field.value }}
         }
       end
 
