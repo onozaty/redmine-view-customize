@@ -112,7 +112,7 @@ ViewCustomize = {
         {"id": 6, "name": "RoleX"}
       ],
       "customFields": [
-        {"id": 4, "name": "[Project Custom field] Text", "value": "text"},
+        {"id": 4, "name": "[Project Custom field] Text", "value": "text"}
       ]
     },
     "issue": {
