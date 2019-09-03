@@ -2,6 +2,8 @@ ja:
   label_view_customize: "表示のカスタマイズ"
   label_view_customize_plural: "表示のカスタマイズ"
   label_view_customizes_new: "新しい表示のカスタマイズ"
+  label_disable_all: "全て無効に"
+  label_enable_all: "全て有効に"
   label_javascript: "JavaScript"
   label_css: "CSS"
   label_html: "HTML"

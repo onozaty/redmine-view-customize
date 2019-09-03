@@ -3,6 +3,8 @@ en:
   label_view_customize: "View customize"
   label_view_customize_plural: "View customizes"
   label_view_customizes_new: "New view customize"
+  label_disable_all: "Disable all"
+  label_enable_all: "Enable all"
   label_javascript: "JavaScript"
   label_css: "CSS"
   label_html: "HTML"
