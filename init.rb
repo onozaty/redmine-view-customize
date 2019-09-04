@@ -3,7 +3,7 @@ Redmine::Plugin.register :view_customize do
   name 'View Customize plugin'
   author 'onozaty'
   description 'View Customize plugin for Redmine'
-  version '2.3.0.40-2'
+  version '2.4.0'
   url 'https://github.com/onozaty/redmine-view-customize'
   author_url 'https://github.com/onozaty'
 
