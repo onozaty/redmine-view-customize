@@ -2,7 +2,7 @@ module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
 
-      path = context[:request].path_info;
+      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
 
       html = "\n<!-- [view customize plugin] path:#{path} -->\n"
       html << stylesheet_link_tag("view_customize", plugin: "view_customize")
@@ -17,7 +17,8 @@ module RedmineViewCustomize
 
     def view_issues_form_details_bottom(context={})
 
-      return create_view_customize_html(context[:request].path_info, ViewCustomize::INSERTION_POSITION_ISSUE_FORM)
+      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
+      return create_view_customize_html(path, ViewCustomize::INSERTION_POSITION_ISSUE_FORM)
     end
 
     def view_issues_show_details_bottom(context={})
@@ -26,7 +27,8 @@ module RedmineViewCustomize
       html << "ViewCustomize.context.issue = { id: #{context[:issue].id} };"
       html << "\n//]]>\n</script>"
 
-      html << create_view_customize_html(context[:request].path_info, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
+      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
+      html << create_view_customize_html(path, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
 
       return html
     end
