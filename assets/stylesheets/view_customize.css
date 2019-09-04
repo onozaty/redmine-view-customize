@@ -61,3 +61,11 @@ input#view_customize_comments {
 .icon-view_customize {
     background-image: url("../images/view_customize.png");
 }
+
+.icon-view_customize-disable {
+    background-image: url("../images/disable.png");
+}
+
+.icon-view_customize-enable {
+    background-image: url("../images/enable.png");
+}

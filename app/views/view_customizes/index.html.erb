@@ -37,4 +37,14 @@
 
 </table>
 
+<p class="buttons">
+  <%= link_to l(:label_disable_all),
+      view_customizes_path(view_customize: {is_enabled: false}),
+      :data => {:confirm => l(:text_are_you_sure)}, :method => :put,
+      :class => 'icon icon-view_customize-disable' %>
+  <%= link_to l(:label_enable_all),
+      view_customizes_path(view_customize: {is_enabled: true}),
+      :data => {:confirm => l(:text_are_you_sure)}, :method => :put,
+      :class => 'icon icon-view_customize-enable' %>
+</p>
 <% end %>
