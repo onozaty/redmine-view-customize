@@ -2,7 +2,7 @@ class ViewCustomizesController < ApplicationController
   layout 'admin'
 
   before_action :require_admin
-  before_action :find_view_customize, :except => [:index, :new, :create]
+  before_action :find_view_customize, :except => [:index, :new, :create, :update_all]
 
   helper :sort
   include SortHelper
@@ -45,6 +45,13 @@ class ViewCustomizesController < ApplicationController
   rescue ActiveRecord::StaleObjectError
     flash.now[:error] = l(:notice_locking_conflict)
     render :action => 'edit'
+  end
+
+  def update_all
+    ViewCustomize.update_all(view_customize_params.to_hash)
+
+    flash[:notice] = l(:notice_successful_update)
+    redirect_to view_customizes_path
   end
 
   def destroy
