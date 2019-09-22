@@ -1,3 +1,5 @@
+require 'time'
+
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
@@ -82,6 +84,7 @@ module RedmineViewCustomize
           "admin" => user.admin?,
           "firstname" => user.firstname,
           "lastname" => user.lastname,
+          "last_login_on" => (user.last_login_on.iso8601 unless user.last_login_on.nil?),
           "groups" => user.groups.map {|group| { "id" => group.id, "name" => group.name }},
           "apiKey" => (user.api_token.value unless user.api_token.nil?),
           "customFields" => user.custom_field_values.map {|field| { "id" => field.custom_field.id, "name" => field.custom_field.name, "value" => field.value }}
