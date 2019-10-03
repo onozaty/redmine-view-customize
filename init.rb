@@ -12,7 +12,9 @@ Redmine::Plugin.register :view_customize do
     :caption => :label_view_customize,
     :html => { :class => 'icon icon-view_customize'},
     :if => Proc.new { User.current.admin? }
-    
+
+  settings :default => { 'create_api_access_key' => '' }, :partial => 'settings/view_customize_settings'
+
   should_be_disabled false if Redmine::Plugin.installed?(:easy_extensions)
 end
 

@@ -21,3 +21,4 @@ en:
   field_author: "Author"
   text_path_pattern_info: "Path pattern is specified with a regular expression. (ex. /issues/[0-9]+)"
   text_path_pattern_match_info: "If there is a match with the path of the page, insert the following code and execute it."
+  option_create_api_access_key: "Automatically create API access key"

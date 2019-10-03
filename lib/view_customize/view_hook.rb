@@ -77,6 +77,12 @@ module RedmineViewCustomize
     def create_view_customize_context(view_hook_context)
 
       user = User.current
+
+      if Setting.plugin_view_customize[:create_api_access_key] == "1" and user.api_token.nil?
+        # Create API access key
+        user.api_key
+      end
+
       context = {
         "user" => {
           "id" => user.id,
