@@ -95,6 +95,7 @@ ViewCustomize = {
       "admin": true,
       "firstname": "Redmine",
       "lastname": "Admin",
+      "last_login_on": "2019-09-22T14:44:53Z",
       "groups": [
         {"id": 5, "name": "Group1"}
       ],
