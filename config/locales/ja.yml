@@ -20,3 +20,4 @@ ja:
   field_author: "作成者"
   text_path_pattern_info: "パスのパターンは正規表現で指定します。 (例 /issues/[0-9]+)"
   text_path_pattern_match_info: "ページのパスが一致した場合、以下のコードを挿入し、実行します。"
+  option_create_api_access_key: "APIアクセスキーを自動的に作成する"

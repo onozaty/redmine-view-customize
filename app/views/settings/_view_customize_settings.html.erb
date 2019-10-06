@@ -1,0 +1,5 @@
+<p>
+  <label for="settings_create_api_access_key"><%= l(:option_create_api_access_key) %></label>
+  <%= hidden_field_tag 'settings[create_api_access_key]', '0' %>
+  <%= check_box_tag 'settings[create_api_access_key]', '1', @settings[:create_api_access_key] == '1' %>
+</p>

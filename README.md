@@ -101,6 +101,7 @@ ViewCustomize = {
       "admin": true,
       "firstname": "Redmine",
       "lastname": "Admin",
+      "lastLoginOn": "2019-09-22T14:44:53Z",
       "groups": [
         {"id": 5, "name": "Group1"}
       ],
@@ -128,7 +129,19 @@ ViewCustomize = {
 }
 ```
 
-For example, to access the user's API key is `ViewCustomize.context.user.apiKey`.
+For example, to access the user's API access key is `ViewCustomize.context.user.apiKey`.
+
+### API access key
+
+The API access key is created when the "Show" link of the API access key on the My account page is click for the first time.
+
+![Screenshot of my account](screenshots/my_account.en.png)
+
+If you want to created it automatically, set "Automatically create API access key" to ON in the plugin configure page. API access keys can be created without having each user operate the My account page.
+
+![Screenshot of plugin configure](screenshots/plugin_configure.en.png)
+
+To use the API access key, "Enable REST web service" must be turned on in the "API" tab of the setting page.
 
 ## Examples
 

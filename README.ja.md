@@ -95,6 +95,7 @@ ViewCustomize = {
       "admin": true,
       "firstname": "Redmine",
       "lastname": "Admin",
+      "lastLoginOn": "2019-09-22T14:44:53Z",
       "groups": [
         {"id": 5, "name": "Group1"}
       ],
@@ -122,7 +123,19 @@ ViewCustomize = {
 }
 ```
 
-例えばユーザのAPIキーにアクセスするには`ViewCustomize.context.user.apiKey`となります。
+例えばユーザのAPIアクセスキーにアクセスするには`ViewCustomize.context.user.apiKey`となります。
+
+### APIアクセスキー
+
+APIアクセスキーは、個人設定画面のAPIアクセスキーの「表示」リンクを初めて押下したタイミングで生成されます。
+
+![Screenshot of my account](screenshots/my_account.en.png)
+
+自動的に生成したい場合には、プラグインの設定画面にて「APIアクセスキーを自動的に作成する」をONにしてください。各ユーザに個人設定画面で操作してもらわなくても、APIアクセスキーが生成されるようになります。
+
+![Screenshot of plugin configure](screenshots/plugin_configure.en.png)
+
+APIアクセスキーの利用には、設定画面の「API」タブにて、「RESTによるWebサービスを有効にする」をONにしておく必要があります。
 
 ## 設定例
 

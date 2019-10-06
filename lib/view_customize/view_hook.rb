@@ -1,3 +1,5 @@
+require 'time'
+
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
@@ -75,6 +77,12 @@ module RedmineViewCustomize
     def create_view_customize_context(view_hook_context)
 
       user = User.current
+
+      if Setting.plugin_view_customize[:create_api_access_key] == "1" and user.api_token.nil?
+        # Create API access key
+        user.api_key
+      end
+
       context = {
         "user" => {
           "id" => user.id,
@@ -82,6 +90,7 @@ module RedmineViewCustomize
           "admin" => user.admin?,
           "firstname" => user.firstname,
           "lastname" => user.lastname,
+          "lastLoginOn" => (user.last_login_on.iso8601 unless user.last_login_on.nil?),
           "groups" => user.groups.map {|group| { "id" => group.id, "name" => group.name }},
           "apiKey" => (user.api_token.value unless user.api_token.nil?),
           "customFields" => user.custom_field_values.map {|field| { "id" => field.custom_field.id, "name" => field.custom_field.name, "value" => field.value }}
