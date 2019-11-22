@@ -2,6 +2,38 @@ require 'time'
 
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
+    CODEMIRROR_STYLESHEETS = %w(
+      lib/codemirror
+      addon/lint/lint
+      addon/fold/foldgutter
+    )
+    CODEMIRROR_JAVASCRIPTS = %w(
+        lib/codemirror
+        addon/edit/matchbrackets
+        addon/edit/closebrackets
+        addon/edit/matchtags
+        addon/edit/closetag
+        addon/hint/show-hint
+        addon/hint/javascript-hint
+        addon/hint/xml-hint
+        addon/hint/html-hint
+        addon/hint/css-hint
+        addon/lint/lint
+        addon/lint/javascript-lint
+        addon/lint/html-lint
+        addon/lint/css-lint
+        addon/fold/foldcode
+        addon/fold/foldgutter
+        addon/fold/xml-fold
+        addon/fold/brace-fold
+        addon/fold/indent-fold
+        addon/fold/comment-fold
+        mode/xml/xml
+        mode/javascript/javascript
+        mode/css/css
+        mode/htmlmixed/htmlmixed
+      )
+
     def view_layouts_base_html_head(context={})
 
       path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
@@ -11,6 +43,15 @@ module RedmineViewCustomize
       html << "<script type=\"text/javascript\">\n//<![CDATA[\n"
       html << "ViewCustomize = { context: #{create_view_customize_context(context).to_json} };"
       html << "\n//]]>\n</script>"
+
+      if context[:controller] && context[:controller].is_a?(ViewCustomizesController) && %w(new edit).include?(context[:controller].params[:action])
+        html << <<-HTML
+#{javascript_include_tag('https://unpkg.com/jshint@2.10.3/dist/jshint.js', 'https://unpkg.com/jsonlint@1.6.3/web/jsonlint.js', 'https://unpkg.com/csslint@1.0.5/dist/csslint.js')}
+#{javascript_include_tag(*CODEMIRROR_JAVASCRIPTS, :plugin => "view_customize").gsub('/javascripts/', '/codemirror/')}
+#{stylesheet_link_tag(*CODEMIRROR_STYLESHEETS, :plugin => "view_customize").gsub('/stylesheets/', '/codemirror/')}
+#{javascript_include_tag("view_customize", :plugin => "view_customize")}
+        HTML
+      end
 
       html << create_view_customize_html(path, ViewCustomize::INSERTION_POSITION_HTML_HEAD)
 
