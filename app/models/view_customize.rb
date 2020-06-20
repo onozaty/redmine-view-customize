@@ -3,6 +3,7 @@ class ViewCustomize < ActiveRecord::Base
 
   validates_presence_of :path_pattern
   validates_length_of :path_pattern, :maximum => 255
+  validates_length_of :project_pattern, :maximum => 255
 
   validates_presence_of :code
 
@@ -66,6 +67,15 @@ class ViewCustomize < ActiveRecord::Base
     rescue
       errors.add(:path_pattern, :invalid)
     end
+
+    unless project_pattern.empty?
+      begin
+        Regexp.compile(project_pattern)
+      rescue
+        errors.add(:project_pattern, :invalid)
+      end
+    end
+
   end
 
   def initialize(attributes=nil, *args)

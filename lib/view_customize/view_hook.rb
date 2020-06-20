@@ -3,16 +3,16 @@ require 'time'
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
-
+      ctx = create_view_customize_context(context)
       path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
 
       html = "\n<!-- [view customize plugin] path:#{path} -->\n"
       html << stylesheet_link_tag("view_customize", plugin: "view_customize")
       html << "<script type=\"text/javascript\">\n//<![CDATA[\n"
-      html << "ViewCustomize = { context: #{create_view_customize_context(context).to_json} };"
+      html << "ViewCustomize = { context: #{ctx.to_json} };"
       html << "\n//]]>\n</script>"
 
-      html << create_view_customize_html(path, ViewCustomize::INSERTION_POSITION_HTML_HEAD)
+      html << create_view_customize_html(ctx, path, ViewCustomize::INSERTION_POSITION_HTML_HEAD)
 
       return html
     end
@@ -37,22 +37,30 @@ module RedmineViewCustomize
 
     private
 
-    def create_view_customize_html(path, insertion_position)
+    def create_view_customize_html(ctx, path, insertion_position)
 
-      view_customize_html_parts = match_customize(path, insertion_position).map {|item|
+      view_customize_html_parts = match_customize(ctx, path, insertion_position).map {|item|
         to_html(item)
       }
       return view_customize_html_parts.join("\n").html_safe
 
     end
 
-    def match_customize(path, insertion_position)
+    def match_customize(ctx, path, insertion_position)
+      ViewCustomize.all.select {|item| target_customize?(ctx, path, insertion_position, item)}
+    end
 
-      ViewCustomize.all.select {|item|
-        item.available? \
-          && item.insertion_position == insertion_position \
-          && path =~ Regexp.new(item.path_pattern)
-      }
+    def target_customize?(ctx, path, insertion_position, item)
+      return false unless item.available?
+      return false unless item.insertion_position == insertion_position 
+      return false unless path =~ Regexp.new(item.path_pattern)
+
+      if item.project_pattern.empty?
+        return true
+      end
+
+      return false unless ctx["project"]
+      return ctx["project"]["identifier"] =~ Regexp.new(item.project_pattern)
     end
 
     def to_html(view_customize)
