@@ -9,6 +9,14 @@
     </em>
   </p>
   <p>
+    <%= form.text_field :project_pattern,
+        :size => 100, :required => false %>
+    <em class="info">
+      <%= l(:text_project_pattern_info) %><br />
+      <%= l(:text_project_pattern_match_info) %>
+    </em>
+  </p>
+  <p>
     <%= form.select :insertion_position,
           options_for_select(
             @view_customize.insertion_positions.map {|key, val| [l(key), val]},

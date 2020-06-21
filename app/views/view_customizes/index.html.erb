@@ -15,6 +15,7 @@
     <tr>
       <%= sort_header_tag('id', :caption => '#') %>
       <%= sort_header_tag('path_pattern', :caption => l(:field_path_pattern)) %>
+      <%= sort_header_tag('project_pattern', :caption => l(:field_project_pattern)) %>
       <%= sort_header_tag('insertion_position', :caption => l(:field_insertion_position)) %>
       <%= sort_header_tag('customize_type', :caption => l(:field_customize_type)) %>
       <%= sort_header_tag('comments', :caption => l(:field_comments) + ' / ' + l(:field_code)) %>
@@ -27,6 +28,7 @@
     <tr class="<%= cycle('odd', 'even') %><%= ' disable' unless view_customize.is_enabled %><%= ' private' unless !view_customize.is_private %>">
       <td class="id"><%= link_to view_customize.id, view_customize_path(view_customize.id) %></td>
       <td class="path"><%=h view_customize.path_pattern %></td>
+      <td class="project_pattern"><%=h view_customize.project_pattern%></td>
       <td class="insertion_position"><%=h l(view_customize.insertion_position_label) %></td>
       <td><%=h l(view_customize.customize_type_label) %></td>
       <td class="comments"><%=h view_customize.comments.present? ? view_customize.comments : truncate(view_customize.code, :length => 80) %></td>
