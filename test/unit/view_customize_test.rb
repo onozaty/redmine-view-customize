@@ -2,6 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 require File.expand_path('../../../lib/view_customize/view_hook', __FILE__)
 
 class ViewCustomizeTest < ActiveSupport::TestCase
+  fixtures :projects
   #
   #
   class Record
@@ -23,6 +24,17 @@ class ViewCustomizeTest < ActiveSupport::TestCase
     end
   end
   #
+  class Request
+    attr_accessor :path
+    def initialize(path)
+      @path = path
+    end
+
+    def path_info
+      @path
+    end
+  end
+  #
   # Replace records
   module ViewCustomizeExt
     refine ViewCustomize do
@@ -38,37 +50,35 @@ class ViewCustomizeTest < ActiveSupport::TestCase
   #
   #
   def test_hook_match_customize
-    ctx = {}
-    path = "/redmine/issues"
+    request = Request.new("/redmine/issues")
     pos = "html_head"
+    project1 = Project.find(1)
+    project2 = Project.find(2)
 
     Record.store([Record.new(true, ".*", "", "html_head")])
 
     hook = RedmineViewCustomize::ViewHook.instance
-    matches = hook.send(:match_customize, ctx, path, pos)
+    matches = hook.send(:match_customize, {:request => request}, pos)
     assert_equal matches.length, 1
 
     # right project
-    Record.store([Record.new(true, ".*", "testproject", "html_head")])
-    matches = hook.send(:match_customize, { "project" => { "identifier" => "testproject" }}, path, pos)
+    Record.store([Record.new(true, ".*", project1.identifier, "html_head")])
+    matches = hook.send(:match_customize, {:request => request, :project => project1}, pos)
     assert matches.length == 1
     # wrong proejct
-    matches = hook.send(:match_customize, { "project" => { "identifier" => "sampleproject" }}, path, pos)
+    matches = hook.send(:match_customize, {:request => request, :project => project2}, pos)
     assert matches.length == 0
-    # no project in ctx, but project is in record
-    matches = hook.send(:match_customize, {}, path, pos)
+    # no project, but project is in record
+    matches = hook.send(:match_customize, {:request => request}, pos)
     assert matches.length == 0
     # filter by path
     Record.store([Record.new(true, ".*", "", "html_head"), Record.new(true, "/redmine/view_customize", "", "html_head")])
-    matches = hook.send(:match_customize, {}, path, pos)
+    matches = hook.send(:match_customize, {:request => request}, pos)
     assert matches.length == 1
     # filter by project and path
-    Record.store([Record.new(true, ".*", "", "html_head"), Record.new(true, "/redmine/issues", "testproject", "html_head")])
-    matches = hook.send(:match_customize, { "project" => { "identifier" => "testproject" }}, path, pos)
+    Record.store([Record.new(true, ".*", "", "html_head"), Record.new(true, "/redmine/issues", project1.identifier, "html_head")])
+    matches = hook.send(:match_customize, {:request => request, :project => project1}, pos)
     assert matches.length == 2
-
-
-
 
   end
 end

@@ -12,15 +12,14 @@ module RedmineViewCustomize
       html << "ViewCustomize = { context: #{ctx.to_json} };"
       html << "\n//]]>\n</script>"
 
-      html << create_view_customize_html(ctx, path, ViewCustomize::INSERTION_POSITION_HTML_HEAD)
+      html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_HTML_HEAD)
 
       return html
     end
 
     def view_issues_form_details_bottom(context={})
 
-      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
-      return create_view_customize_html(path, ViewCustomize::INSERTION_POSITION_ISSUE_FORM)
+      return create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_FORM)
     end
 
     def view_issues_show_details_bottom(context={})
@@ -29,28 +28,30 @@ module RedmineViewCustomize
       html << "ViewCustomize.context.issue = { id: #{context[:issue].id} };"
       html << "\n//]]>\n</script>"
 
-      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
-      html << create_view_customize_html(path, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
+      html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
 
       return html
     end
 
     private
 
-    def create_view_customize_html(ctx, path, insertion_position)
+    def create_view_customize_html(context, insertion_position)
 
-      view_customize_html_parts = match_customize(ctx, path, insertion_position).map {|item|
+      view_customize_html_parts = match_customize(context, insertion_position).map {|item|
         to_html(item)
       }
       return view_customize_html_parts.join("\n").html_safe
 
     end
 
-    def match_customize(ctx, path, insertion_position)
-      ViewCustomize.all.select {|item| target_customize?(ctx, path, insertion_position, item)}
+    def match_customize(context, insertion_position)
+      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info)
+      project = context[:project].identifier if context[:project]
+
+      ViewCustomize.all.select {|item| target_customize?(path, project, insertion_position, item)}
     end
 
-    def target_customize?(ctx, path, insertion_position, item)
+    def target_customize?(path, project, insertion_position, item)
       return false unless item.available?
       return false unless item.insertion_position == insertion_position 
       return false unless path =~ Regexp.new(item.path_pattern)
@@ -59,8 +60,8 @@ module RedmineViewCustomize
         return true
       end
 
-      return false unless ctx["project"]
-      return ctx["project"]["identifier"] =~ Regexp.new(item.project_pattern)
+      return false if project.blank?
+      return project =~ Regexp.new(item.project_pattern)
     end
 
     def to_html(view_customize)
