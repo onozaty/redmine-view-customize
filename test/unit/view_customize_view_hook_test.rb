@@ -2,7 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 require File.expand_path('../../../lib/view_customize/view_hook', __FILE__)
 
 class ViewCustomizeViewHookTest < ActiveSupport::TestCase
-  fixtures :view_customizes, :projects, :users
+  fixtures :view_customizes, :projects, :users, :issues, :custom_fields, :custom_values
 
   class Request
     def initialize(path)
@@ -63,4 +63,74 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
     assert_equal [8], matches.map {|x| x.id }
 
   end
+
+  def test_view_layouts_base_html_head
+
+    User.current = User.find(1)
+
+    expected = <<HTML
+
+<!-- [view customize plugin] path:/issues -->
+<link rel=\"stylesheet\" media=\"screen\" href=\"/plugin_assets/view_customize/stylesheets/view_customize.css?1592744523\" /><script type=\"text/javascript\">
+//<![CDATA[
+ViewCustomize = { context: {\"user\":{\"id\":1,\"login\":\"admin\",\"admin\":true,\"firstname\":\"Redmine\",\"lastname\":\"Admin\",\"lastLoginOn\":\"2006-07-19T20:57:52Z\",\"groups\":[],\"apiKey\":null,\"customFields\":[{\"id\":4,\"name\":\"Phone number\",\"value\":null},{\"id\":5,\"name\":\"Money\",\"value\":null}]},\"project\":{\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":1,\"name\":\"Non member\"}],\"customFields\":[{\"id\":3,\"name\":\"Development status\",\"value\":\"Stable\"}]}} };
+//]]>
+</script>
+<!-- view customize id:1 -->
+<script type=\"text/javascript\">
+//<![CDATA[
+code_001
+//]]>
+</script>
+<!-- view customize id:2 -->
+<style type=\"text/css\">
+code_002
+</style>
+<!-- view customize id:3 -->
+code_003
+HTML
+
+    html = @hook.view_layouts_base_html_head({:request => Request.new("/issues"), :project => @project_ecookbook})
+    assert_equal expected, html
+
+  end
+
+  def test_view_issues_form_details_bottom
+
+    User.current = User.find(1)
+
+    expected = <<HTML
+
+<!-- view customize id:7 -->
+code_007
+HTML
+
+    html = @hook.view_issues_form_details_bottom({:request => Request.new("/issues/new"), :project => @project_ecookbook})
+    assert_equal expected, html
+
+  end
+
+  def test_view_issues_show_details_bottom
+
+    User.current = User.find(1)
+    issue = Issue.find(1)
+
+    expected = <<HTML
+
+<script type=\"text/javascript\">
+//<![CDATA[
+ViewCustomize.context.issue = { id: 1 };
+//]]>
+</script>
+<!-- view customize id:8 -->
+<style type=\"text/css\">
+code_008
+</style>
+HTML
+
+    html = @hook.view_issues_show_details_bottom({:request => Request.new("/issues/1"), :issue => issue, :project => @project_onlinestore})
+    assert_equal expected, html
+
+  end
+
 end
