@@ -3,14 +3,13 @@ require 'time'
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
-      ctx = create_view_customize_context(context)
       path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
 
       html = "\n<!-- [view customize plugin] path:#{path} -->\n"
       html << stylesheet_link_tag("view_customize", plugin: "view_customize")
       html << "<script type=\"text/javascript\">\n//<![CDATA[\n"
-      html << "ViewCustomize = { context: #{ctx.to_json} };"
-      html << "\n//]]>\n</script>"
+      html << "ViewCustomize = { context: #{create_view_customize_context(context).to_json} };"
+      html << "\n//]]>\n</script>\n"
 
       html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_HTML_HEAD)
 
@@ -19,14 +18,14 @@ module RedmineViewCustomize
 
     def view_issues_form_details_bottom(context={})
 
-      return create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_FORM)
+      return "\n" + create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_FORM)
     end
 
     def view_issues_show_details_bottom(context={})
 
-      html =  "<script type=\"text/javascript\">\n//<![CDATA[\n"
+      html =  "\n<script type=\"text/javascript\">\n//<![CDATA[\n"
       html << "ViewCustomize.context.issue = { id: #{context[:issue].id} };"
-      html << "\n//]]>\n</script>"
+      html << "\n//]]>\n</script>\n"
 
       html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
 
@@ -40,7 +39,7 @@ module RedmineViewCustomize
       view_customize_html_parts = match_customize(context, insertion_position).map {|item|
         to_html(item)
       }
-      return view_customize_html_parts.join("\n").html_safe
+      return view_customize_html_parts.join("\n").html_safe + "\n"
 
     end
 
@@ -48,20 +47,23 @@ module RedmineViewCustomize
       path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info)
       project = context[:project].identifier if context[:project]
 
-      ViewCustomize.all.select {|item| target_customize?(path, project, insertion_position, item)}
+      ViewCustomize.all.order(:id).select {|item| target_customize?(path, project, insertion_position, item)}
     end
 
     def target_customize?(path, project, insertion_position, item)
       return false unless item.available?
       return false unless item.insertion_position == insertion_position 
-      return false unless path =~ Regexp.new(item.path_pattern)
 
-      if item.project_pattern.empty?
-        return true
+      if item.path_pattern.present?
+        return false unless path =~ Regexp.new(item.path_pattern)
       end
 
-      return false if project.blank?
-      return project =~ Regexp.new(item.project_pattern)
+      if item.project_pattern.present?
+        return false unless project.present?
+        return false unless project =~ Regexp.new(item.project_pattern)
+      end
+
+      return true
     end
 
     def to_html(view_customize)

@@ -1,7 +1,6 @@
 class ViewCustomize < ActiveRecord::Base
   belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
 
-  validates_presence_of :path_pattern
   validates_length_of :path_pattern, :maximum => 255
   validates_length_of :project_pattern, :maximum => 255
 
@@ -62,13 +61,15 @@ class ViewCustomize < ActiveRecord::Base
   end
 
   def valid_pattern
-    begin
-      Regexp.compile(path_pattern)
-    rescue
-      errors.add(:path_pattern, :invalid)
+    if path_pattern.present?
+      begin
+        Regexp.compile(path_pattern)
+      rescue
+        errors.add(:path_pattern, :invalid)
+      end
     end
 
-    unless project_pattern.empty?
+    if project_pattern.present?
       begin
         Regexp.compile(project_pattern)
       rescue
