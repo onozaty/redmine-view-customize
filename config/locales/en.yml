@@ -1,4 +1,3 @@
-# English strings go here for Rails i18n
 en:
   label_view_customize: "View customize"
   label_view_customize_plural: "View customizes"
@@ -21,7 +20,7 @@ en:
   field_is_enabled: "Enabled"
   field_author: "Author"
   text_path_pattern_info: "Path pattern is specified with a regular expression. (ex. /issues/[0-9]+)"
-  text_path_pattern_match_info: "If there is a match with the path of the page, insert the following code and execute it."
-  text_project_pattern_info: "Project (identifier) pattern is specified with a regular expression (ex. sampleProjA|samplePrjB)"
-  text_project_pattern_match_info: "If there is a match with the current project, insert the following code and execute it."
+  text_path_pattern_match_info: "If a path pattern was set, the code will not be inserted if the path of the page do not match."
+  text_project_pattern_info: "Project (identifier) pattern is specified with a regular expression. (ex. sample-proj-a|sample-proj-b)"
+  text_project_pattern_match_info: "If the project pattern was set, the code will not be inserted if the current project do not match."
   option_create_api_access_key: "Automatically create API access key"
