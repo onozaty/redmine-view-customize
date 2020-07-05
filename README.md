@@ -36,12 +36,18 @@ Click "New view customize" and enter items.
 
 ![Screenshot of new](screenshots/new.en.png)
 
-"Path pattern" is specified by regular expression. If it matches the path of the page, insert the code and execute it.
+Use "Path pattern" and "Project pattern" to specify the target page.  
+If neither is set, all pages will be targeted.
+
+"Path pattern" is a regular expression to specify the page path.  
+If a path pattern was set, the code will not be inserted if the path of the page do not match.
 
 The following is an example.
-* `.*` : All pages
 * `/issues$` : Issue list
 * `/issues/[0-9]+` : Issue detail page
+
+"Project pattern" is a regular expression to specify the project identifier. It becomes item added in v2.7.0.  
+If the project pattern was set, the code will not be inserted if the current project do not match.
 
 "Insertion position" is the code insertion position. It becomes item added in v1.2.0.
 
@@ -51,7 +57,7 @@ Issue input fields are reconstructed when trackers or statuses are changed. If "
 * "Bottom of issue detail"
 
 If there is no part corresponding to the insertion position of the code on the page, the code is not insert.
-For example, even if you specify `.*` in "Path pattern", if "Bottom of issue detail" is specified for "Insertion position", it will be executed only on the issue detail page.
+For example, even if there are no "Path pattern" and "Project pattern" settings and all pages are targeted, if "Bottom of issue detail" is specified for "Insertion position", it will be executed only on the issue detail page.
 
 In "Type", select the type of code ("JavaScript", "CSS" or "HTML") and enter the actual code in "Code".
 
@@ -61,7 +67,7 @@ If "Comment" is not entered, "Code" is displayed in the list.
 
 Addition is completed by clicking "Create" button.
 
-The specified code is executed on the page that matches "Path pattern", and the page will be customized.
+On the page that matches the "Path pattern" and "Project pattern", the code will be embedded at the position specified in "Insertion position", and the page will be customized.
 
 ![Screenshot of example](screenshots/example.en.png)
 

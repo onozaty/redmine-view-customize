@@ -36,11 +36,18 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
 ![Screenshot of new](screenshots/new.en.png)
 
-「Path pattern」は正規表現で指定します。ページのパスと一致すると、コードを挿入して実行します。
+「Path pattern」と「Project pattern」を使って、対象のページを指定します。  
+どちらも指定されていなかった場合には、全てのページが対象になります。
+
+「Path pattern」は正規表現でパスを指定します。  
+「Path pattern」が設定されていた場合、ページのパスが一致しないと、コードが挿入されません。
+
 以下は設定例です。
-* `.*` : 全てのページ
 * `/issues$` : チケット一覧
 * `/issues/[0-9]+` : 個々のチケットの内容表示画面
+
+「Project pattern」は正規表現でプロジェクトの識別子を指定します。v2.7.0にて追加された項目になります。  
+「Project pattern」が設定されていた場合、プロジェクトが一致しないと、コードが挿入されません。
 
 「Insertion position」は、コードの挿入位置です。v1.2.0にて追加された項目になります。
 * 「Head of all pages」 : 全てのページのヘッダ部分。(v1.2.0より前のバージョンと同じ位置)
@@ -48,7 +55,7 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 チケットの入力欄は、トラッカーやステータスを変えると再構成されますが、「Bottom of issue form」を指定しておくと再構成された際に再度実行されるので、入力欄に対する処理はこれを指定すると便利です。
 * 「Bottom of issue detail」 : チケットの詳細表示の下部。
 
-該当ページにコードの挿入位置に該当する箇所が無かった場合、コードは埋め込まれません。たとえば、「Path pattern」で`.*`で全ページを指定しても、「Insertion position」に「Bottom of issue detail」を指定していると、チケットの詳細表示画面でしか実行されないことになります。
+該当ページにコードの挿入位置に該当する箇所が無かった場合、コードは埋め込まれません。たとえば、「Path pattern」と「Project pattern」の設定が無く、全ページが対象となっても、「Insertion position」に「Bottom of issue detail」を指定していると、チケットの詳細表示画面でしかコードが実行されないことになります。
 
 「Type」にてコードの種類(「JavaScript」、「CSS」または「HTML」)を選択し、「Code」に実際のコードを入力します。
 
@@ -56,7 +63,7 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
 「Create」ボタン押下で新規カスタマイズの追加が完了です。
 
-「Path pattern」に一致したページで指定のコードが実行され、画面がカスタマイズされるようになります。
+「Path pattern」と「Project pattern」に一致したページで、「Insertion position」で指定した位置にコードが埋め込まれ、画面がカスタマイズされるようになります。
 
 ![Screenshot of example](screenshots/example.en.png)
 

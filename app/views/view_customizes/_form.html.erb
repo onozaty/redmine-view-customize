@@ -2,10 +2,18 @@
 <div class="box tabular">
   <p>
     <%= form.text_field :path_pattern,
-        :size => 100, :required => true %>
+        :size => 100 %>
     <em class="info">
       <%= l(:text_path_pattern_info) %><br />
       <%= l(:text_path_pattern_match_info) %>
+    </em>
+  </p>
+  <p>
+    <%= form.text_field :project_pattern,
+        :size => 100 %>
+    <em class="info">
+      <%= l(:text_project_pattern_info) %><br />
+      <%= l(:text_project_pattern_match_info) %>
     </em>
   </p>
   <p>
