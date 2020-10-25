@@ -68,30 +68,30 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
 
     User.current = User.find(1)
 
-    expected = <<HTML
-
-<!-- [view customize plugin] path:/issues -->
-<link rel=\"stylesheet\" media=\"screen\" href=\"/plugin_assets/view_customize/stylesheets/view_customize.css?1592744523\" /><script type=\"text/javascript\">
-//<![CDATA[
-ViewCustomize = { context: {\"user\":{\"id\":1,\"login\":\"admin\",\"admin\":true,\"firstname\":\"Redmine\",\"lastname\":\"Admin\",\"lastLoginOn\":\"2006-07-19T20:57:52Z\",\"groups\":[],\"apiKey\":null,\"customFields\":[{\"id\":4,\"name\":\"Phone number\",\"value\":null},{\"id\":5,\"name\":\"Money\",\"value\":null}]},\"project\":{\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":1,\"name\":\"Non member\"}],\"customFields\":[{\"id\":3,\"name\":\"Development status\",\"value\":\"Stable\"}]}} };
-//]]>
-</script>
-<!-- view customize id:1 -->
-<script type=\"text/javascript\">
-//<![CDATA[
-code_001
-//]]>
-</script>
-<!-- view customize id:2 -->
-<style type=\"text/css\">
-code_002
-</style>
-<!-- view customize id:3 -->
-code_003
-HTML
+    expected = Regexp.escape("\n")
+    expected << Regexp.escape("<!-- [view customize plugin] path:/issues -->\n")
+    expected << Regexp.escape("<link rel=\"stylesheet\" media=\"screen\" href=\"/plugin_assets/view_customize/stylesheets/view_customize.css?")
+    expected << "[0-9]+"
+    expected << Regexp.escape("\" /><script type=\"text/javascript\">\n")
+    expected << Regexp.escape("//<![CDATA[\n")
+    expected << Regexp.escape("ViewCustomize = { context: {\"user\":{\"id\":1,\"login\":\"admin\",\"admin\":true,\"firstname\":\"Redmine\",\"lastname\":\"Admin\",\"lastLoginOn\":\"2006-07-19T20:57:52Z\",\"groups\":[],\"apiKey\":null,\"customFields\":[{\"id\":4,\"name\":\"Phone number\",\"value\":null},{\"id\":5,\"name\":\"Money\",\"value\":null}]},\"project\":{\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":1,\"name\":\"Non member\"}],\"customFields\":[{\"id\":3,\"name\":\"Development status\",\"value\":\"Stable\"}]}} };\n")
+    expected << Regexp.escape("//]]>\n")
+    expected << Regexp.escape("</script>\n")
+    expected << Regexp.escape("<!-- view customize id:1 -->\n")
+    expected << Regexp.escape("<script type=\"text/javascript\">\n")
+    expected << Regexp.escape("//<![CDATA[\n")
+    expected << Regexp.escape("code_001\n")
+    expected << Regexp.escape("//]]>\n")
+    expected << Regexp.escape("</script>\n")
+    expected << Regexp.escape("<!-- view customize id:2 -->\n")
+    expected << Regexp.escape("<style type=\"text/css\">\n")
+    expected << Regexp.escape("code_002\n")
+    expected << Regexp.escape("</style>\n")
+    expected << Regexp.escape("<!-- view customize id:3 -->\n")
+    expected << Regexp.escape("code_003\n")
 
     html = @hook.view_layouts_base_html_head({:request => Request.new("/issues"), :project => @project_ecookbook})
-    assert_equal expected, html
+    assert_match Regexp.new(expected), html
 
   end
 
@@ -106,7 +106,7 @@ code_007
 HTML
 
     html = @hook.view_issues_form_details_bottom({:request => Request.new("/issues/new"), :project => @project_ecookbook})
-    assert_equal expected, html
+    assert_match expected, html
 
   end
 
