@@ -8,6 +8,7 @@ en:
   label_css: "CSS"
   label_html: "HTML"
   label_insertion_position_html_head: "Head of all pages"
+  label_insertion_position_html_bottom: "Bottom of all pages"
   label_insertion_position_issue_form: "Bottom of issue form"
   label_insertion_position_issue_show: "Bottom of issue detail"
   field_path_pattern: "Path pattern"
