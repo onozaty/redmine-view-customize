@@ -8,7 +8,7 @@ ja:
   label_css: "CSS"
   label_html: "HTML"
   label_insertion_position_html_head: "全ページのヘッダ"
-  label_insertion_position_html_bottom: "全ページの最後"
+  label_insertion_position_html_bottom: "全ページの一番下"
   label_insertion_position_issue_form: "チケット入力欄の下"
   label_insertion_position_issue_show: "チケット詳細の下"
   field_path_pattern: "パスのパターン"
