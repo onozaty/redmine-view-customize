@@ -95,6 +95,24 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
 
   end
 
+  def test_view_layouts_base_body_bottom
+
+    User.current = User.find(1)
+
+    expected = <<HTML
+
+<!-- view customize id:9 -->
+<script type=\"text/javascript\">
+//<![CDATA[
+code_009
+//]]>
+</script>
+HTML
+
+    html = @hook.view_layouts_base_body_bottom({:request => Request.new("/issues"), :project => @project_ecookbook})
+    assert_equal expected, html
+  end
+
   def test_view_issues_form_details_bottom
 
     User.current = User.find(1)
@@ -106,7 +124,7 @@ code_007
 HTML
 
     html = @hook.view_issues_form_details_bottom({:request => Request.new("/issues/new"), :project => @project_ecookbook})
-    assert_match expected, html
+    assert_equal expected, html
 
   end
 

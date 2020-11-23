@@ -17,7 +17,7 @@ module RedmineViewCustomize
     end
 
     def view_layouts_base_body_bottom(context={})
-      return create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_HTML_BOTTOM)
+      return "\n" + create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_HTML_BOTTOM)
     end
 
     def view_issues_form_details_bottom(context={})
