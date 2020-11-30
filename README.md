@@ -162,3 +162,7 @@ To use the API access key, "Enable REST web service" must be turned on in the "A
 ## License
 
 The plugin is available under the terms of the [GNU General Public License](http://www.gnu.org/licenses/gpl-2.0.html), version 2 or later.
+
+## Author
+
+[onozaty](https://github.com/onozaty)

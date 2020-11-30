@@ -157,3 +157,7 @@ APIアクセスキーの利用には、設定画面の「API」タブにて、�
 ## ライセンス
 
 このプラグインは [GNU General Public License](http://www.gnu.org/licenses/gpl-2.0.html) バージョン2またはそれ以降の条件で利用できます。
+
+## 作者
+
+[onozaty](https://github.com/onozaty)
