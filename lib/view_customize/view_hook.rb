@@ -27,13 +27,24 @@ module RedmineViewCustomize
 
     def view_issues_show_details_bottom(context={})
 
+      issue = context[:issue]
+      tracker = issue.tracker
+
       html =  "\n<script type=\"text/javascript\">\n//<![CDATA[\n"
-      html << "ViewCustomize.context.issue = { id: #{context[:issue].id} };"
+      html << "ViewCustomize.context.issue = {"\
+                "id: #{issue.id},"\
+                "subject: '#{issue.subject}',"\
+                "tracker: {"\
+                  "id: #{tracker.id},"\
+                  "name: '#{tracker.name}',"\
+                  "description: '#{tracker.description}'"\
+                "}"\
+              "};"
       html << "\n//]]>\n</script>\n"
 
       html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
-
       return html
+
     end
 
     private
