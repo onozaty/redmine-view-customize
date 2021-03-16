@@ -1,4 +1,5 @@
 require 'time'
+require 'json'
 
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
@@ -31,15 +32,9 @@ module RedmineViewCustomize
       tracker = issue.tracker
 
       html =  "\n<script type=\"text/javascript\">\n//<![CDATA[\n"
-      html << "ViewCustomize.context.issue = {"\
-                "id: #{issue.id},"\
-                "subject: '#{issue.subject}',"\
-                "tracker: {"\
-                  "id: #{tracker.id},"\
-                  "name: '#{tracker.name}',"\
-                  "description: '#{tracker.description}'"\
-                "}"\
-              "};"
+      html << "ViewCustomize.context.issue = #{issue.to_json};"
+      html << "ViewCustomize.context.issue.tracker = #{tracker.to_json};"
+      html << "ViewCustomize.context.issue.tracker.customFields = #{tracker.custom_fields.to_json};"
       html << "\n//]]>\n</script>\n"
 
       html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
