@@ -152,7 +152,14 @@ To use the API access key, "Enable REST web service" must be turned on in the "A
 
 ## Examples
 
-* [onozaty/redmine\-view\-customize\-scripts: Script list for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
+Example code is published in the following project.
+
+* [onozaty/redmine\-view\-customize\-scripts: Code examples for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
+
+If you don't know how to write the code, please refer to the project above.
+
+If the code you try does not work, you can ask questions from the [Issue](https://github.com/onozaty/redmine-view-customize-scripts/issues) of the above project.  
+Please note that this is a place to ask questions, not a place to request code creation.
 
 ## Supported versions
 
@@ -166,3 +173,7 @@ The plugin is available under the terms of the [GNU General Public License](http
 ## Author
 
 [onozaty](https://github.com/onozaty)
+
+I am looking for people who are willing to become [sponsors](https://github.com/sponsors/onozaty) and contribute to maintaining this project.
+
+* https://github.com/sponsors/onozaty

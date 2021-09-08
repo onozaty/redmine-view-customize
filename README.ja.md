@@ -147,7 +147,14 @@ APIアクセスキーの利用には、設定画面の「API」タブにて、�
 
 ## 設定例
 
-* [onozaty/redmine\-view\-customize\-scripts: Script list for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
+下記のプロジェクトで設定例を公開しています。
+
+* [onozaty/redmine\-view\-customize\-scripts: Code examples for "Redmine View Customize Plugin"](https://github.com/onozaty/redmine-view-customize-scripts)
+
+コードの書き方がわからない場合には、上記プロジェクトを参考にしてみてください。
+
+試したコードがうまく動かない場合には、上記プロジェクトの [Issue](https://github.com/onozaty/redmine-view-customize-scripts/issues) から質問することが出来ます。  
+質問を受け付ける場所であり、コード作成の依頼場所ではありませんのでご注意ください。
 
 ## サポートバージョン
 
@@ -161,3 +168,7 @@ APIアクセスキーの利用には、設定画面の「API」タブにて、�
 ## 作者
 
 [onozaty](https://github.com/onozaty)
+
+[スポンサー](https://github.com/sponsors/onozaty) となり、本プロジェクトを維持することに貢献していただける方を募集しています。
+
+* https://github.com/sponsors/onozaty
