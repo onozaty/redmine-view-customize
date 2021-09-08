@@ -170,5 +170,3 @@ APIアクセスキーの利用には、設定画面の「API」タブにて、�
 [onozaty](https://github.com/onozaty)
 
 [スポンサー](https://github.com/sponsors/onozaty) となり、本プロジェクトを維持することに貢献していただける方を募集しています。
-
-* https://github.com/sponsors/onozaty

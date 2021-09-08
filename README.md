@@ -159,7 +159,7 @@ Example code is published in the following project.
 If you don't know how to write the code, please refer to the project above.
 
 If the code you try does not work, you can ask questions from the [Issue](https://github.com/onozaty/redmine-view-customize-scripts/issues) of the above project.  
-Please note that this is a place to ask questions, not a place to request code creation.
+Please note that this is a place to ask questions, not a place to request coding.
 
 ## Supported versions
 
@@ -175,5 +175,3 @@ The plugin is available under the terms of the [GNU General Public License](http
 [onozaty](https://github.com/onozaty)
 
 I am looking for people who are willing to become [sponsors](https://github.com/sponsors/onozaty) and contribute to maintaining this project.
-
-* https://github.com/sponsors/onozaty
