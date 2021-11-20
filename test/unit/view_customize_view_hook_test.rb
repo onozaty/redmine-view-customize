@@ -1,5 +1,5 @@
 require File.expand_path('../../test_helper', __FILE__)
-require File.expand_path('../../../lib/view_customize/view_hook', __FILE__)
+require File.expand_path('../../../lib/redmine_view_customize/view_hook', __FILE__)
 
 class ViewCustomizeViewHookTest < ActiveSupport::TestCase
   fixtures :view_customizes, :projects, :users, :issues, :custom_fields, :custom_values
