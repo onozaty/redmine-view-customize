@@ -115,6 +115,7 @@ module RedmineViewCustomize
       project = view_hook_context[:project]
       if project
         context["project"] = {
+          "id" => project.id,
           "identifier" => project.identifier,
           "name" => project.name,
           "roles" => user.roles_for_project(project).map {|role| { "id" => role.id, "name" => role.name }},

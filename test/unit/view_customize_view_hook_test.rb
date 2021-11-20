@@ -74,7 +74,7 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
     expected << "[0-9]+"
     expected << Regexp.escape("\" /><script type=\"text/javascript\">\n")
     expected << Regexp.escape("//<![CDATA[\n")
-    expected << Regexp.escape("ViewCustomize = { context: {\"user\":{\"id\":1,\"login\":\"admin\",\"admin\":true,\"firstname\":\"Redmine\",\"lastname\":\"Admin\",\"lastLoginOn\":\"2006-07-19T20:57:52Z\",\"groups\":[],\"apiKey\":null,\"customFields\":[{\"id\":4,\"name\":\"Phone number\",\"value\":null},{\"id\":5,\"name\":\"Money\",\"value\":null}]},\"project\":{\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":1,\"name\":\"Non member\"}],\"customFields\":[{\"id\":3,\"name\":\"Development status\",\"value\":\"Stable\"}]}} };\n")
+    expected << Regexp.escape("ViewCustomize = { context: {\"user\":{\"id\":1,\"login\":\"admin\",\"admin\":true,\"firstname\":\"Redmine\",\"lastname\":\"Admin\",\"lastLoginOn\":\"2006-07-19T20:57:52Z\",\"groups\":[],\"apiKey\":null,\"customFields\":[{\"id\":4,\"name\":\"Phone number\",\"value\":null},{\"id\":5,\"name\":\"Money\",\"value\":null}]},\"project\":{\"id\":1,\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":1,\"name\":\"Non member\"}],\"customFields\":[{\"id\":3,\"name\":\"Development status\",\"value\":\"Stable\"}]}} };\n")
     expected << Regexp.escape("//]]>\n")
     expected << Regexp.escape("</script>\n")
     expected << Regexp.escape("<!-- view customize id:1 -->\n")
