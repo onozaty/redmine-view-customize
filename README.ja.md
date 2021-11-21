@@ -115,6 +115,7 @@ ViewCustomize = {
       ]
     },
     "project": {
+      "id": 1,
       "identifier": "project-a",
       "name": "Project A",
       "roles": [
