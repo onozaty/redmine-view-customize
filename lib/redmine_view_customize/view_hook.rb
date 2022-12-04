@@ -27,8 +27,23 @@ module RedmineViewCustomize
 
     def view_issues_show_details_bottom(context={})
 
+      issue = {
+        "id" => context[:issue].id,
+        "author" => {
+          "id" => context[:issue].author.id,
+          "name" => context[:issue].author.name
+        }
+      }
+
+      if context[:issue].last_updated_by.present?
+        issue["lastUpdatedBy"] = {
+          "id" => context[:issue].last_updated_by.id,
+          "name" => context[:issue].last_updated_by.name
+        }
+      end
+
       html =  "\n<script type=\"text/javascript\">\n//<![CDATA[\n"
-      html << "ViewCustomize.context.issue = { id: #{context[:issue].id} };"
+      html << "ViewCustomize.context.issue = #{issue.to_json};"
       html << "\n//]]>\n</script>\n"
 
       html << create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUE_SHOW)
