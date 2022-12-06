@@ -131,7 +131,9 @@ ViewCustomize = {
       ]
     },
     "issue": {
-      "id": 1
+      "id": 1,
+      "author": {"id": 2, "name": "John Smith"},
+      "lastUpdatedBy": {"id": 1, "name": "Redmine Admin"}
     }
   }
 }

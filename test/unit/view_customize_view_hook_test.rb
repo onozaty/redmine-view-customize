@@ -3,7 +3,7 @@ require File.expand_path('../../../lib/redmine_view_customize/view_hook', __FILE
 
 class ViewCustomizeViewHookTest < ActiveSupport::TestCase
   fixtures :projects, :users, :email_addresses, :user_preferences, :members, :member_roles, :roles,
-           :issues, :custom_fields, :custom_fields_projects, :custom_values,
+           :issues, :journals, :custom_fields, :custom_fields_projects, :custom_values,
            :view_customizes
 
   class Request
@@ -133,13 +133,13 @@ HTML
   def test_view_issues_show_details_bottom
 
     User.current = User.find(1)
-    issue = Issue.find(1)
+    issue = Issue.find(4)
 
     expected = <<HTML
 
 <script type=\"text/javascript\">
 //<![CDATA[
-ViewCustomize.context.issue = { id: 1 };
+ViewCustomize.context.issue = {\"id\":4,\"author\":{\"id\":2,\"name\":\"John Smith\"}};
 //]]>
 </script>
 <!-- view customize id:8 -->
@@ -148,7 +148,30 @@ code_008
 </style>
 HTML
 
-    html = @hook.view_issues_show_details_bottom({:request => Request.new("/issues/1"), :issue => issue, :project => @project_onlinestore})
+    html = @hook.view_issues_show_details_bottom({:request => Request.new("/issues/4"), :issue => issue, :project => @project_onlinestore})
+    assert_equal expected, html
+
+  end
+
+  def test_view_issues_show_details_bottom_with_journals
+
+    User.current = User.find(1)
+    issue = Issue.find(6)
+
+    expected = <<HTML
+
+<script type=\"text/javascript\">
+//<![CDATA[
+ViewCustomize.context.issue = {\"id\":6,\"author\":{\"id\":2,\"name\":\"John Smith\"},\"lastUpdatedBy\":{\"id\":1,\"name\":\"Redmine Admin\"}};
+//]]>
+</script>
+<!-- view customize id:8 -->
+<style type=\"text/css\">
+code_008
+</style>
+HTML
+
+    html = @hook.view_issues_show_details_bottom({:request => Request.new("/issues/6"), :issue => issue, :project => @project_onlinestore})
     assert_equal expected, html
 
   end
