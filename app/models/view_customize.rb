@@ -22,12 +22,14 @@ class ViewCustomize < ActiveRecord::Base
   INSERTION_POSITION_HTML_BOTTOM = "html_bottom"
   INSERTION_POSITION_ISSUE_FORM = "issue_form"
   INSERTION_POSITION_ISSUE_SHOW = "issue_show"
+  INSERTION_POSITION_CONTEXT_MENU_END = "context_menu_end"
 
   @@insertion_positions = {
     :label_insertion_position_html_head => INSERTION_POSITION_HTML_HEAD,
     :label_insertion_position_issue_form => INSERTION_POSITION_ISSUE_FORM,
     :label_insertion_position_issue_show => INSERTION_POSITION_ISSUE_SHOW,
-    :label_insertion_position_html_bottom => INSERTION_POSITION_HTML_BOTTOM
+    :label_insertion_position_html_bottom => INSERTION_POSITION_HTML_BOTTOM,
+    :label_insertion_position_context_menu_end => INSERTION_POSITION_CONTEXT_MENU_END
   }
 
   def customize_types
