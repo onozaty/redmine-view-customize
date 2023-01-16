@@ -11,6 +11,7 @@ zh-TW:
   label_insertion_position_html_bottom: "所有頁面的底部"
   label_insertion_position_issue_form: "議題清單底部"
   label_insertion_position_issue_show: "議題詳情頁面"
+  label_insertion_position_issues_context_menu: "議題上下文菜單"
   field_path_pattern: "路徑表達式"
   field_project_pattern: "專案表達式"
   field_insertion_position: "嵌入位置"
