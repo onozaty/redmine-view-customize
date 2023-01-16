@@ -97,3 +97,14 @@ view_customize_009:
   customize_type: javascript
   comments: comment_009
   project_pattern: ""
+view_customize_010:
+  id: 10
+  path_pattern: ""
+  code: code_010
+  is_enabled: true
+  is_private: false
+  author_id: 1
+  insertion_position: context_menu_end
+  customize_type: javascript
+  comments: comment_010
+  project_pattern: ""
