@@ -11,6 +11,7 @@ zh:
   label_insertion_position_html_bottom: "所有页面的底部"
   label_insertion_position_issue_form: "问题(issue)表单底部"
   label_insertion_position_issue_show: "问题(issue)详情页面"
+  label_insertion_position_issues_context_menu: "问题(issue)上下文菜单"
   field_path_pattern: "路径表达式"
   field_project_pattern: "项目表达式"
   field_insertion_position: "嵌入位置"

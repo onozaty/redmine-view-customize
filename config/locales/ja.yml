@@ -11,6 +11,7 @@ ja:
   label_insertion_position_html_bottom: "全ページの末尾"
   label_insertion_position_issue_form: "チケット入力欄の下"
   label_insertion_position_issue_show: "チケット詳細の下"
+  label_insertion_position_issues_context_menu: "チケット一覧のコンテキストメニュー"
   field_path_pattern: "パスのパターン"
   field_project_pattern: "プロジェクトのパターン"
   field_insertion_position: "挿入位置"

@@ -56,6 +56,7 @@ If the project pattern was set, the code will not be inserted if the current pro
 Issue input fields are reconstructed when trackers or statuses are changed. If "Bottom of issue form" is specified, it will be executed again when reconstructed.
 * "Bottom of issue detail"
 * "Bottom of all pages" (Last in HTML body)
+* "Issues context menu"
 
 If there is no part corresponding to the insertion position of the code on the page, the code is not insert.
 For example, even if there are no "Path pattern" and "Project pattern" settings and all pages are targeted, if "Bottom of issue detail" is specified for "Insertion position", it will be executed only on the issue detail page.

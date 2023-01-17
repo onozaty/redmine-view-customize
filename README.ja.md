@@ -55,6 +55,7 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 チケットの入力欄は、トラッカーやステータスを変えると再構成されますが、「Bottom of issue form」を指定しておくと再構成された際に再度実行されるので、入力欄に対する処理はこれを指定すると便利です。
 * 「Bottom of issue detail」 : チケットの詳細表示の下部。
 * 「Bottom of all pages」 : 全てのページの末尾(HTML body内で一番下の部分)。
+* 「Issues context menu」 : チケット一覧のコンテキストメニュー。
 
 該当ページにコードの挿入位置に該当する箇所が無かった場合、コードは埋め込まれません。たとえば、「Path pattern」と「Project pattern」の設定が無く、全ページが対象となっても、「Insertion position」に「Bottom of issue detail」を指定していると、チケットの詳細表示画面でしかコードが実行されないことになります。
 

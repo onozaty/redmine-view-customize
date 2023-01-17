@@ -11,6 +11,7 @@ en:
   label_insertion_position_html_bottom: "Bottom of all pages"
   label_insertion_position_issue_form: "Bottom of issue form"
   label_insertion_position_issue_show: "Bottom of issue detail"
+  label_insertion_position_issues_context_menu: "Issues context menu"
   field_path_pattern: "Path pattern"
   field_project_pattern: "Project pattern"
   field_insertion_position: "Insertion position"

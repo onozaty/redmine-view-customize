@@ -50,6 +50,10 @@ module RedmineViewCustomize
 
       return html
     end
+    
+    def view_issues_context_menu_end(context={})
+      return "\n" + create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUES_CONTEXT_MENU)
+    end 
 
     private
 
