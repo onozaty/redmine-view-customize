@@ -52,6 +52,10 @@ module RedmineViewCustomize
     end
     
     def view_issues_context_menu_end(context={})
+      html = "\n<script type=\"text/javascript\">\n//<![CDATA[\n"
+      html << "ViewCustomize.context.issues = #{context[:issues].to_json(methods: :custom_values)};"
+      html << "\n//]]>\n</script>\n"
+     
       return "\n" + create_view_customize_html(context, ViewCustomize::INSERTION_POSITION_ISSUES_CONTEXT_MENU)
     end 
 
