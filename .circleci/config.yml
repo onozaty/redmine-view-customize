@@ -1,0 +1,77 @@
+version: 2.1
+
+orbs:
+  redmine-plugin: agileware-jp/redmine-plugin@3.1.0
+
+jobs:
+  run_tests:
+    parameters:
+      redmine_version:
+        type: string
+        default: latest
+      redmine_product:
+        type: string
+        default: redmine
+      ruby_version:
+        type: string
+        default: "3.1" # https://github.com/redmine/redmine/blob/5.0.5/Gemfile#L3
+      database:
+        type: enum
+        enum:
+          - mysql
+          - pg
+          - mariadb
+          - sqlite3
+        default: pg
+    executor:
+      name: redmine-plugin/ruby-<< parameters.database >>
+      ruby_version: << parameters.ruby_version >>
+    steps:
+      - checkout
+      - redmine-plugin/download-redmine:
+          version: << parameters.redmine_version >>
+          product: << parameters.redmine_product >>
+      - redmine-plugin/install-self
+      - run:
+          name: Rename to view_customize
+          working_directory: redmine
+          command: mv -v plugins/$CIRCLE_PROJECT_REPONAME plugins/view_customize
+      - redmine-plugin/generate-database_yml
+      - run:
+          name: Install MagickWand library when rmagick.gem is used
+          working_directory: redmine
+          command: |
+            set -eux -o pipefail
+            # https://github.com/redmine/redmine/blob/4.0.9/Gemfile#L41
+            grep -q 'gem "rmagick"' Gemfile || exit 0
+            # rmagick.gem requires followings.
+            sudo apt-get update
+            sudo apt-get install -y libmagickwand-dev
+      - run:
+          working_directory: redmine
+          command: touch Gemfile.local
+      - redmine-plugin/bundle-install
+      - redmine-plugin/test:
+          plugin: view_customize
+      - store_artifacts:
+          path: redmine/tmp/screenshots
+          destination: screenshots
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - run_tests:
+          name: latest Redmine (5.0)
+      - run_tests:
+          name: redmine-4.2
+          redmine_version: "4.2.10"
+          ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
+      - run_tests:
+          name: redmine-4.1
+          redmine_version: "4.1.7"
+          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.1.7/Gemfile#L3
+      - run_tests:
+          name: redmine-4.0
+          redmine_version: "4.0.9"
+          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.0.9/Gemfile#L3
