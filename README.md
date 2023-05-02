@@ -1,5 +1,7 @@
 # Redmine view customize plugin
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/onozaty/redmine-view-customize/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/onozaty/redmine-view-customize/tree/master)
+
 This a plugin allows you to customize the view for the [Redmine](http://www.redmine.org).
 
 ## Features
