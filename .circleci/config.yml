@@ -62,16 +62,18 @@ workflows:
   test:
     jobs:
       - run_tests:
-          name: latest Redmine (5.0)
+          name: latest Redmine (5.0) with PostgreSQL
+          database: pg
       - run_tests:
-          name: redmine-4.2
+          name: latest Redmine (5.0) with MySQL
+          database: mysql
+      - run_tests:
+          name: redmine-4.2 with PostgreSQL
           redmine_version: "4.2.10"
           ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
+          database: pg
       - run_tests:
-          name: redmine-4.1
-          redmine_version: "4.1.7"
-          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.1.7/Gemfile#L3
-      - run_tests:
-          name: redmine-4.0
-          redmine_version: "4.0.9"
-          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.0.9/Gemfile#L3
+          name: redmine-4.2 with MySQL
+          redmine_version: "4.2.10"
+          ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
+          database: mysql

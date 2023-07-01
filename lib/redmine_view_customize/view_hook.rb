@@ -124,6 +124,7 @@ module RedmineViewCustomize
           "admin" => user.admin?,
           "firstname" => user.firstname,
           "lastname" => user.lastname,
+          "mail" => user.mail,
           "lastLoginOn" => (user.last_login_on.iso8601 unless user.last_login_on.nil?),
           "groups" => user.groups.map {|group| { "id" => group.id, "name" => group.name }},
           "apiKey" => (user.api_token.value unless user.api_token.nil?),
