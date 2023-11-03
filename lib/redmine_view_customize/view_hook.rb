@@ -3,7 +3,7 @@ require 'time'
 module RedmineViewCustomize
   class ViewHook < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context={})
-      path = Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info);
+      path = sanitize(Redmine::CodesetUtil.replace_invalid_utf8(context[:request].path_info));
 
       html = "\n<!-- [view customize plugin] path:#{path} -->\n"
       html << stylesheet_link_tag("view_customize", plugin: "view_customize")
