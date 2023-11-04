@@ -14,7 +14,7 @@ jobs:
         default: redmine
       ruby_version:
         type: string
-        default: "3.1" # https://github.com/redmine/redmine/blob/5.0.5/Gemfile#L3
+        default: "3.3" # https://github.com/redmine/redmine/blob/5.1.0/Gemfile#L3
       database:
         type: enum
         enum:
@@ -62,10 +62,10 @@ workflows:
   test:
     jobs:
       - run_tests:
-          name: latest Redmine (5.0) with PostgreSQL
+          name: latest Redmine (5.1) with PostgreSQL
           database: pg
       - run_tests:
-          name: latest Redmine (5.0) with MySQL
+          name: latest Redmine (5.1) with MySQL
           database: mysql
       - run_tests:
           name: redmine-4.2 with PostgreSQL
