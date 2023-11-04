@@ -97,6 +97,19 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
 
   end
 
+  def test_view_layouts_base_html_head_xss
+
+    User.current = User.find(1)
+
+    expected = Regexp.escape("\n")
+    expected << Regexp.escape("<!-- [view customize plugin] path:/projects/--&gt;<h1>xss</h1> -->\n")
+    expected << ".+"
+
+    html = @hook.view_layouts_base_html_head({:request => Request.new("/projects/--><h1>xss<!--/issues"), :project => @project_ecookbook})
+    assert_match Regexp.new(expected), html
+
+  end
+
   def test_view_layouts_base_body_bottom
 
     User.current = User.find(1)
