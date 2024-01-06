@@ -3,7 +3,7 @@ require File.expand_path('../../../lib/redmine_view_customize/view_hook', __FILE
 
 class ViewCustomizeViewHookTest < ActiveSupport::TestCase
   fixtures :projects, :users, :email_addresses, :user_preferences, :members, :member_roles, :roles,
-           :issues, :journals, :custom_fields, :custom_fields_projects, :custom_values,
+           :issues, :journals, :custom_fields, :custom_fields_projects, :custom_values, :time_entries,
            :view_customizes
 
   class Request
@@ -170,7 +170,7 @@ HTML
 
 <script type=\"text/javascript\">
 //<![CDATA[
-ViewCustomize.context.issue = {\"id\":4,\"author\":{\"id\":2,\"name\":\"John Smith\"}};
+ViewCustomize.context.issue = {\"id\":4,\"author\":{\"id\":2,\"name\":\"John Smith\"},\"totalEstimatedHours\":null,\"totalSpentHours\":0.0};
 //]]>
 </script>
 <!-- view customize id:8 -->
@@ -193,7 +193,7 @@ HTML
 
 <script type=\"text/javascript\">
 //<![CDATA[
-ViewCustomize.context.issue = {\"id\":6,\"author\":{\"id\":2,\"name\":\"John Smith\"},\"lastUpdatedBy\":{\"id\":1,\"name\":\"Redmine Admin\"}};
+ViewCustomize.context.issue = {\"id\":6,\"author\":{\"id\":2,\"name\":\"John Smith\"},\"totalEstimatedHours\":null,\"totalSpentHours\":0.0,\"lastUpdatedBy\":{\"id\":1,\"name\":\"Redmine Admin\"}};
 //]]>
 </script>
 <!-- view customize id:8 -->
@@ -203,6 +203,29 @@ code_008
 HTML
 
     html = @hook.view_issues_show_details_bottom({:request => Request.new("/issues/6"), :issue => issue, :project => @project_onlinestore})
+    assert_equal expected, html
+
+  end
+
+  def test_view_issues_show_details_bottom_with_time_entries
+
+    User.current = User.find(1)
+    issue = Issue.find(1)
+
+    expected = <<HTML
+
+<script type=\"text/javascript\">
+//<![CDATA[
+ViewCustomize.context.issue = {\"id\":1,\"author\":{\"id\":2,\"name\":\"John Smith\"},\"totalEstimatedHours\":200.0,\"totalSpentHours\":154.25,\"lastUpdatedBy\":{\"id\":2,\"name\":\"John Smith\"}};
+//]]>
+</script>
+<!-- view customize id:8 -->
+<style type=\"text/css\">
+code_008
+</style>
+HTML
+
+    html = @hook.view_issues_show_details_bottom({:request => Request.new("/issues/1"), :issue => issue, :project => @project_onlinestore})
     assert_equal expected, html
 
   end
