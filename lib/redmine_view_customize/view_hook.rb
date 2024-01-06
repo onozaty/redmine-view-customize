@@ -32,7 +32,9 @@ module RedmineViewCustomize
         "author" => {
           "id" => context[:issue].author.id,
           "name" => context[:issue].author.name
-        }
+        },
+        "totalEstimatedHours" => context[:issue].total_estimated_hours,
+        "totalSpentHours" => context[:issue].total_spent_hours
       }
 
       if context[:issue].last_updated_by.present?
