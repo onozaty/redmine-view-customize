@@ -132,6 +132,8 @@ ViewCustomize = {
     "issue": {
       "id": 1,
       "author": {"id": 2, "name": "John Smith"},
+      "totalEstimatedHours": 10.0,
+      "totalSpentHours": 11.5,
       "lastUpdatedBy": {"id": 1, "name": "Redmine Admin"}
     }
   }
