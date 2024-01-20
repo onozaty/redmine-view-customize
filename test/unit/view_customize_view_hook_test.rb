@@ -97,6 +97,23 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
 
   end
 
+  def test_project_custom_field_visible
+
+    User.current = User.find(2)
+
+    # Change project custom filed visible
+    custom_field = CustomField.find(3)
+    custom_field.visible = false
+    custom_field.role_ids = [3]
+    custom_field.save()
+
+    expected = Regexp.escape("project\":{\"id\":1,\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":1,\"name\":\"Manager\"}],\"customFields\":[]}")
+
+    html = @hook.view_layouts_base_html_head({:request => Request.new("/issues"), :project => @project_ecookbook})
+    assert_match Regexp.new(expected), html
+
+  end
+
   def test_view_layouts_base_html_head_xss
 
     User.current = User.find(1)
