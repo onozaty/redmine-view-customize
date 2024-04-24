@@ -1,4 +1,4 @@
-class ViewCustomize < ActiveRecord::Base
+class ViewCustomize < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
   belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
 
   validates_length_of :path_pattern, :maximum => 255
