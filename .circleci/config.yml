@@ -1,8 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@3.3.1
-  browser-tools: circleci/browser-tools@1.4.6
+  redmine-plugin: agileware-jp/redmine-plugin@3.6.0
 
 jobs:
   run_tests:
@@ -51,8 +50,6 @@ jobs:
       - run:
           working_directory: redmine
           command: touch Gemfile.local
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
           plugin: view_customize
