@@ -183,4 +183,5 @@ The plugin is available under the terms of the [GNU General Public License](http
 
 [onozaty](https://github.com/onozaty)
 
-I am looking for people who are willing to become [sponsors](https://github.com/sponsors/onozaty) and contribute to maintaining this project.
+If you find this project useful, please ⭐ it! Your support helps increase its visibility and keeps the development going.  
+I am also looking for people who are willing to become [sponsors](https://github.com/sponsors/onozaty) and contribute to maintaining this project. Your sponsorship would be greatly appreciated!
