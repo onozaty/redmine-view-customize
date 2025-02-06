@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@3.6.0
+  redmine-plugin: agileware-jp/redmine-plugin@3.8.0
 
 jobs:
   run_tests:
@@ -62,10 +62,10 @@ workflows:
   test:
     jobs:
       - run_tests:
-          name: latest Redmine (5.1) with PostgreSQL
+          name: latest Redmine with PostgreSQL
           database: pg
       - run_tests:
-          name: latest Redmine (5.1) with MySQL
+          name: latest Redmine with MySQL
           database: mysql
       - run_tests:
           name: redmine-4.2 with PostgreSQL
