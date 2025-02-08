@@ -1,0 +1,23 @@
+services:
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_POSTGRES: db
+      REDMINE_DB_PASSWORD: example
+    volumes:
+      - redmine-files:/usr/src/redmine/files
+      - ./..:/usr/src/redmine/plugins/view_customize
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: redmine
+volumes:
+  redmine-files:
+  postgres-data:

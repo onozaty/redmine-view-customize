@@ -1,0 +1,6 @@
+{
+  "name": "Redmine",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "redmine",
+  "workspaceFolder": "/usr/src/redmine/plugins/view_customize"
+}
