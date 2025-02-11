@@ -1,0 +1,15 @@
+{
+  "name": "Redmine",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "redmine",
+  "remoteUser": "redmine",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "workspaceFolder": "/usr/src/redmine/plugins/view_customize",
+  "postCreateCommand": "cd /usr/src/redmine && bundle config set without development && bundle install --verbose && bundle exec rails db:migrate:reset RAILS_ENV=test && bundle exec rake redmine:plugins:migrate RAILS_ENV=production && bundle exec rake redmine:plugins:migrate RAILS_ENV=test"
+}

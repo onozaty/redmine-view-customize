@@ -1,0 +1,27 @@
+services:
+  redmine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_POSTGRES: db
+      REDMINE_DB_PASSWORD: example
+    volumes:
+      - redmine-files:/usr/src/redmine/files
+      - ./database.yml:/usr/src/redmine/config/database.yml
+      - ./..:/usr/src/redmine/plugins/view_customize
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: redmine
+volumes:
+  redmine-files:
+  postgres-data:

@@ -72,9 +72,16 @@ class ViewCustomizeViewHookTest < ActiveSupport::TestCase
 
     expected = Regexp.escape("\n")
     expected << Regexp.escape("<!-- [view customize plugin] path:/issues -->\n")
+    expected << "("
     expected << Regexp.escape("<link rel=\"stylesheet\" media=\"screen\" href=\"/plugin_assets/view_customize/stylesheets/view_customize.css?")
     expected << "[0-9]+"
-    expected << Regexp.escape("\" /><script type=\"text/javascript\">\n")
+    expected << Regexp.escape("\" />")
+    expected << "|"
+    expected << Regexp.escape("<link rel=\"stylesheet\" href=\"/assets/plugin_assets/view_customize/view_customize-")
+    expected << "[0-9a-z]+"
+    expected << Regexp.escape(".css\" media=\"screen\" />")
+    expected << ")"
+    expected << Regexp.escape("<script type=\"text/javascript\">\n")
     expected << Regexp.escape("//<![CDATA[\n")
     expected << Regexp.escape("ViewCustomize = { context: {\"user\":{\"id\":1,\"login\":\"admin\",\"admin\":true,\"firstname\":\"Redmine\",\"lastname\":\"Admin\",\"mail\":\"admin@somenet.foo\",\"lastLoginOn\":\"2006-07-19T20:57:52Z\",\"groups\":[],\"apiKey\":null,\"customFields\":[{\"id\":4,\"name\":\"Phone number\",\"value\":null},{\"id\":5,\"name\":\"Money\",\"value\":null}]},\"project\":{\"id\":1,\"identifier\":\"ecookbook\",\"name\":\"eCookbook\",\"roles\":[{\"id\":4,\"name\":\"Non member\"}],\"customFields\":[{\"id\":3,\"name\":\"Development status\",\"value\":\"Stable\"}]}} };\n")
     expected << Regexp.escape("//]]>\n")

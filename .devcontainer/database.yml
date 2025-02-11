@@ -1,0 +1,16 @@
+production:
+  adapter: postgresql
+  host: "db"
+  port: "5432"
+  username: "postgres"
+  password: "example"
+  database: "postgres"
+  encoding: "utf8"
+test:
+  adapter: postgresql
+  host: "db"
+  port: "5432"
+  username: "postgres"
+  password: "example"
+  database: "test"
+  encoding: "utf8"
