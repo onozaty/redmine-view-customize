@@ -1,5 +1,5 @@
 <div class="contextual">
-  <%= link_to l(:label_view_customizes_new), 
+  <%= link_to sprite_icon_or_label(:add, l(:label_view_customizes_new)),
       new_view_customize_path, :class => 'icon icon-add' %>
 </div>
 
@@ -40,11 +40,11 @@
 </table>
 
 <p class="buttons">
-  <%= link_to l(:label_disable_all),
+  <%= link_to sprite_icon_or_label(:view_customize_disable, l(:label_disable_all), plugin: :view_customize),
       view_customizes_path(view_customize: {is_enabled: 0}),
       :data => {:confirm => l(:text_are_you_sure)}, :method => :put,
       :class => 'icon icon-view_customize-disable' %>
-  <%= link_to l(:label_enable_all),
+  <%= link_to sprite_icon_or_label(:view_customize_enable, l(:label_enable_all), plugin: :view_customize),
       view_customizes_path(view_customize: {is_enabled: 1}),
       :data => {:confirm => l(:text_are_you_sure)}, :method => :put,
       :class => 'icon icon-view_customize-enable' %>

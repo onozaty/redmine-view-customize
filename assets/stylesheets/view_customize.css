@@ -58,14 +58,21 @@ input#view_customize_comments {
     width: 95%;
 }
 
-.icon-view_customize {
+.icon-view_customize:not(:has(svg)) {
     background-image: url("../images/view_customize.png");
 }
 
-.icon-view_customize-disable {
+.icon-view_customize-disable:not(:has(svg)) {
     background-image: url("../images/disable.png");
 }
 
-.icon-view_customize-enable {
+.icon-view_customize-enable:not(:has(svg)) {
     background-image: url("../images/enable.png");
+}
+
+/* PNG icon support for Redmine 5.1 and earlier */
+.icon:not(:has(svg)) {
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  padding-left: 20px;
 }
