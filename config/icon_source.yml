@@ -1,0 +1,6 @@
+- name: view_customize
+  svg: file-settings
+- name: view_customize_enable
+  svg: circle-check
+- name: view_customize_disable
+  svg: xbox-x
