@@ -69,10 +69,3 @@ input#view_customize_comments {
 .icon-view_customize-enable:not(:has(svg)) {
     background-image: url("../images/enable.png");
 }
-
-/* PNG icon support for Redmine 5.1 and earlier */
-.icon:not(:has(svg)) {
-  background-position: 0% 50%;
-  background-repeat: no-repeat;
-  padding-left: 20px;
-}
