@@ -1,5 +1,5 @@
 Redmine::Plugin.register :view_customize do
-  requires_redmine :version_or_higher => '3.1.0'
+  requires_redmine :version_or_higher => '4.0.0'
   name 'View Customize plugin'
   author 'onozaty'
   description 'View Customize plugin for Redmine'

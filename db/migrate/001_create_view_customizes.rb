@@ -1,4 +1,4 @@
-class CreateViewCustomizes < ActiveRecord::CompatibleLegacyMigration.migration_class
+class CreateViewCustomizes < ActiveRecord::Migration[4.2]
   def change
     create_table :view_customizes do |t|
       t.string :path_pattern
