@@ -23,9 +23,6 @@ jobs:
           - mariadb
           - sqlite3
         default: pg
-      minitest_version:
-        type: string
-        default: ""
     executor:
       name: redmine-plugin/ruby-<< parameters.database >>
       ruby_version: << parameters.ruby_version >>
@@ -51,12 +48,13 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y libmagickwand-dev
       - run:
-          name: Pin minitest version
+          name: Downgrade RubyGems for commonmarker's RubyGems ~> 3.4 requirement
           working_directory: redmine
           command: |
-            if [ -n "<< parameters.minitest_version >>" ]; then
-              echo 'gem "minitest", "<< parameters.minitest_version >>"' >> Gemfile.local
-            fi
+            set -eux -o pipefail
+            # https://rubygems.org/gems/commonmarker/versions/2.3.2 requires RubyGems ~> 3.4
+            grep -q "gem 'commonmarker', '~> 2.3" Gemfile || exit 0
+            gem update --system 3.4.22
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
           plugin: view_customize
@@ -89,8 +87,6 @@ workflows:
           redmine_version: "5.1"
           ruby_version: "3.2" # https://github.com/redmine/redmine/blob/5.1.13/Gemfile#L3
           database: pg
-          # minitest 6 drops APIs Rails 6.1's line_filtering still relies on, breaking test runs.
-          minitest_version: "~> 5.0"
       - run_tests:
           name: redmine-5.0 with PostgreSQL
           redmine_version: "5.0"
