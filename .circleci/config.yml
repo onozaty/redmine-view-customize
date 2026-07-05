@@ -55,6 +55,15 @@ jobs:
             # https://rubygems.org/gems/commonmarker/versions/2.3.2 requires RubyGems ~> 3.4
             grep -q "gem 'commonmarker', '~> 2.3" Gemfile || exit 0
             sudo gem update --system 3.4.22
+      - run:
+          name: Pin loofah for Redmine's pinned nokogiri version
+          working_directory: redmine
+          command: |
+            set -eux -o pipefail
+            # loofah >= 2.21 requires Nokogiri::HTML4, which nokogiri ~> 1.10.0 (pinned here) doesn't have.
+            # https://github.com/flavorjones/loofah/blob/v2.21.0/CHANGELOG.md
+            grep -q 'nokogiri.*~> 1.10.0' Gemfile || exit 0
+            echo 'gem "loofah", "< 2.21"' >> Gemfile.local
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
           plugin: view_customize
