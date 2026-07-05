@@ -3,6 +3,9 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "redmine",
   "remoteUser": "redmine",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
   "customizations": {
     "vscode": {
       "settings": {

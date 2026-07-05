@@ -14,7 +14,7 @@ services:
       - ./database.yml:/usr/src/redmine/config/database.yml
       - ./..:/usr/src/redmine/plugins/view_customize
   db:
-    image: postgres:latest
+    image: postgres:17
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data
