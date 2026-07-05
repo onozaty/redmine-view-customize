@@ -1,4 +1,4 @@
-class AddInsertionPositionToViewCustomizes < ActiveRecord::CompatibleLegacyMigration.migration_class
+class AddInsertionPositionToViewCustomizes < ActiveRecord::Migration[4.2]
   def up
     add_column :view_customizes, :insertion_position, :string, :null => false, :default => "html_head"
 
