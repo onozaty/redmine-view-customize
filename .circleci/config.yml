@@ -23,6 +23,9 @@ jobs:
           - mariadb
           - sqlite3
         default: pg
+      minitest_version:
+        type: string
+        default: ""
     executor:
       name: redmine-plugin/ruby-<< parameters.database >>
       ruby_version: << parameters.ruby_version >>
@@ -48,8 +51,12 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y libmagickwand-dev
       - run:
+          name: Pin minitest version
           working_directory: redmine
-          command: touch Gemfile.local
+          command: |
+            if [ -n "<< parameters.minitest_version >>" ]; then
+              echo 'gem "minitest", "<< parameters.minitest_version >>"' >> Gemfile.local
+            fi
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
           plugin: view_customize
@@ -72,6 +79,8 @@ workflows:
           redmine_version: "5.1.6"
           ruby_version: "3.2" # https://github.com/redmine/redmine/blob/5.1.6/Gemfile#L3
           database: pg
+          # minitest 6 drops APIs Rails 6.1's line_filtering still relies on, breaking test runs.
+          minitest_version: "~> 5.0"
       - run_tests:
           name: redmine-5.0.11 with PostgreSQL
           redmine_version: "5.0.11"
