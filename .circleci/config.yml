@@ -60,9 +60,10 @@ jobs:
           working_directory: redmine
           command: |
             set -eux -o pipefail
-            # loofah >= 2.21 requires Nokogiri::HTML4, which nokogiri ~> 1.10.0 (pinned here) doesn't have.
+            # loofah >= 2.21 requires Nokogiri::HTML4, which was introduced in nokogiri 1.12.0.
+            # Redmine 4.0/4.1 pin nokogiri to ~> 1.10.0 or ~> 1.11.1, so pin loofah too.
             # https://github.com/flavorjones/loofah/blob/v2.21.0/CHANGELOG.md
-            grep -q 'nokogiri.*~> 1.10.0' Gemfile || exit 0
+            grep -Eq "nokogiri.*~> 1\.(10|11)\." Gemfile || exit 0
             echo 'gem "loofah", "< 2.21"' >> Gemfile.local
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
@@ -107,7 +108,7 @@ workflows:
           ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
           database: pg
       - run_tests:
-          name: redmine-4.0 with PostgreSQL
-          redmine_version: "4.0"
-          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.0.9/Gemfile#L3
+          name: redmine-4.1 with PostgreSQL
+          redmine_version: "4.1"
+          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.1.7/Gemfile#L3
           database: pg
