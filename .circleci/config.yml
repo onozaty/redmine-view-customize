@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@3.8.0
+  redmine-plugin: agileware-jp/redmine-plugin@4.0.2
 
 jobs:
   run_tests:
@@ -48,8 +48,13 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y libmagickwand-dev
       - run:
+          name: Downgrade RubyGems for commonmarker's RubyGems ~> 3.4 requirement
           working_directory: redmine
-          command: touch Gemfile.local
+          command: |
+            set -eux -o pipefail
+            # https://rubygems.org/gems/commonmarker/versions/2.3.2 requires RubyGems ~> 3.4
+            grep -q "gem 'commonmarker', '~> 2.3" Gemfile || exit 0
+            sudo gem update --system 3.4.22
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
           plugin: view_customize
@@ -68,17 +73,27 @@ workflows:
           name: latest Redmine with MySQL
           database: mysql
       - run_tests:
-          name: redmine-5.1.6 with PostgreSQL
-          redmine_version: "5.1.6"
-          ruby_version: "3.2" # https://github.com/redmine/redmine/blob/5.1.6/Gemfile#L3
+          name: redmine-6.1 with PostgreSQL
+          redmine_version: "6.1"
+          ruby_version: "3.2" # https://github.com/redmine/redmine/blob/6.1.3/Gemfile#L3
           database: pg
       - run_tests:
-          name: redmine-5.0.11 with PostgreSQL
-          redmine_version: "5.0.11"
-          ruby_version: "3.1" # https://github.com/redmine/redmine/blob/5.0.11/Gemfile#L3
+          name: redmine-6.0 with PostgreSQL
+          redmine_version: "6.0"
+          ruby_version: "3.2" # https://github.com/redmine/redmine/blob/6.0.10/Gemfile#L3
+          database: pg
+      - run_tests:
+          name: redmine-5.1 with PostgreSQL
+          redmine_version: "5.1"
+          ruby_version: "3.2" # https://github.com/redmine/redmine/blob/5.1.13/Gemfile#L3
+          database: pg
+      - run_tests:
+          name: redmine-5.0 with PostgreSQL
+          redmine_version: "5.0"
+          ruby_version: "3.1" # https://github.com/redmine/redmine/blob/5.0.14/Gemfile#L3
           database: pg
       - run_tests:
           name: redmine-4.2 with PostgreSQL
-          redmine_version: "4.2.10"
+          redmine_version: "4.2"
           ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
           database: pg
