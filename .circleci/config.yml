@@ -54,7 +54,7 @@ jobs:
             set -eux -o pipefail
             # https://rubygems.org/gems/commonmarker/versions/2.3.2 requires RubyGems ~> 3.4
             grep -q "gem 'commonmarker', '~> 2.3" Gemfile || exit 0
-            gem update --system 3.4.22
+            sudo gem update --system 3.4.22
       - redmine-plugin/bundle-install
       - redmine-plugin/test:
           plugin: view_customize
