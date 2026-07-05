@@ -97,3 +97,8 @@ workflows:
           redmine_version: "4.2"
           ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
           database: pg
+      - run_tests:
+          name: redmine-4.0 with PostgreSQL
+          redmine_version: "4.0"
+          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.0.9/Gemfile#L3
+          database: pg
